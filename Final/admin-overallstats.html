@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overall Stats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: hsl(202, 87%, 52%);
+        }
+        
+     /* Navbar Styles */
+      /* Navbar Styles */
+        nav {
+    height: 80px;
+    width: 100%;
+    background-color: rgba(28, 94, 179, 0.2);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: flex-end; /* Aligns the nav to the right */
+    align-items: center;
+    padding-right: 20px; /* Adds some space on the right */
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    margin: 0;
+    flex-grow: 1;
+    padding-left: 50px; /* Increased spacing */
+    padding-top: 30px;
+}
+
+.nav-menu li {
+    margin: 0 35px; /* Increased spacing between menu items */
+    position: relative;
+}
+
+.nav-menu li:not(:first-child):not(:nth-child(1)):not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -30px;  /* Adjust spacing */
+    top: 30%;
+    transform: translateY(-50%);
+    height: 60px;  /* Adjust height as needed */
+    width: 2px;  /* Thickness of the line */
+    background-color: white; /* Change color as needed */
+}
+
+
+.nav-menu a {
+    text-decoration: none;
+    font-size: 1.5em; /* Increased text size */
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #FFD700;
+}
+
+.nav-logo {
+        height: 60px; 
+        width: auto;  
+        margin-left: 20px;
+        margin-top: -15px;
+        }
+
+        /* Header */
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            margin-top: 70px; /* Adjust to match the navbar height */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: rgba(28, 94, 179, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            z-index: 1;
+            width: 180px;
+            top: 100%;
+            left: 0;
+            border-radius: 10px;
+        }
+
+        .dropdown-menu li {
+            padding: 5px 0;
+        }
+
+        .dropdown-menu li a {
+            color: white;
+            font-size: 1em;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .filters {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .stats-table {
+            height: fit-content;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .stats-table th, .stats-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stats-table th {
+            background-color: #003366;
+            color: white;
+        }
+
+        .player-logo {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function showStats() {
+            const selectedRole = document.getElementById("role").value;
+            const selectedFormat = document.getElementById("format").value;
+            const tables = document.querySelectorAll(".stats-table");
+
+            tables.forEach(table => {
+                table.classList.add("hidden");
+            });
+
+            const tableId = `${selectedFormat}-${selectedRole}`;
+            const selectedTable = document.getElementById(tableId);
+            if (selectedTable) {
+                selectedTable.classList.remove("hidden");
+            }
+        }
+        
+        // Initialize the display when the page loads
+        window.onload = function() {
+            showStats();
+        };
+
+        // Function for hamburger menu
+        function toggleMenu() {
+            const menu = document.querySelector(".nav-menu");
+            menu.classList.toggle("active");
+        }
+    </script>
+</head>
+<body>
+    <nav>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul class="nav-menu">
+                <li>
+                    <a href="admin-home.html">
+                    <img src="logo.jpg" alt="Logo" class='nav-logo'>
+                </a>
+                </li>
+                <li><a href="admin-home.html" class="active">Home</a></li>
+                <li><a href="registered-users.php">Registered Users</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Support</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="admin_dashboard.php">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li><a href="registration.php">Signout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+ 
+        <h1 style="text-align: center; margin-top: 100px;">Overall Player Stats</h1>
+           
+    <main>
+        <div class="filters">
+            <label for="role">Select Role:</label>
+            <select id="role" onchange="showStats()">
+                <option value="batters">Batters</option>
+                <option value="bowlers">Bowlers</option>
+            </select>
+            <label for="format">Select Format:</label>
+            <select id="format" onchange="showStats()">
+                <option value="odi">ODI</option>
+                <option value="test">Test</option>
+                <option value="t20">T20</option>
+            </select>
+        </div>
+
+        <!-- ODI Batters Stats Table -->
+        <table id="odi-batters" class="stats-table">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Matches</th>
+                    <th>Innings</th>
+                    <th>Not Out</th>
+                    <th>Runs</th>
+                    <th>Highest Score</th>
+                    <th>Average</th>
+                    <th>Balls Faced</th>
+                    <th>Strike Rate</th>
+                    <th>100s</th>
+                    <th>50s</th>
+                    <th>4s</th>
+                    <th>6s</th>
+                </tr>
+            </thead>
+         
+
+    <tbody>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Virat Kohli</td>
+            <td>275</td>
+            <td>265</td>
+            <td>40</td>
+            <td>12898</td>
+            <td>183</td>
+            <td>57.3</td>
+            <td>14300</td>
+            <td>90.3</td>
+            <td>46</td>
+            <td>65</td>
+            <td>1200</td>
+            <td>125</td>
+        </tr>
+        <tr>
+            <td><img src="pakistan.png" class="player-logo" alt="Pakistan">Babar Azam</td>
+            <td>150</td>
+            <td>145</td>
+            <td>15</td>
+            <td>7800</td>
+            <td>158</td>
+            <td>55.2</td>
+            <td>8900</td>
+            <td>87.6</td>
+            <td>28</td>
+            <td>42</td>
+            <td>800</td>
+            <td>85</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">Steve Smith</td>
+            <td>145</td>
+            <td>135</td>
+            <td>12</td>
+            <td>6300</td>
+            <td>164</td>
+            <td>51.2</td>
+            <td>7800</td>
+            <td>80.7</td>
+            <td>12</td>
+            <td>38</td>
+            <td>650</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td><img src="southafrica.png" class="player-logo" alt="South Africa">Quinton de Kock</td>
+            <td>140</td>
+            <td>140</td>
+            <td>10</td>
+            <td>7300</td>
+            <td>178</td>
+            <td>52.1</td>
+            <td>8300</td>
+            <td>88.0</td>
+            <td>17</td>
+            <td>38</td>
+            <td>750</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td><img src="england.png" class="player-logo" alt="England">Joe Root</td>
+            <td>160</td>
+            <td>150</td>
+            <td>25</td>
+            <td>6500</td>
+            <td>133*</td>
+            <td>49.5</td>
+            <td>7400</td>
+            <td>87.8</td>
+            <td>16</td>
+            <td>36</td>
+            <td>700</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td><img src="newzealand.png" class="player-logo" alt="New Zealand">Kane Williamson</td>
+            <td>150</td>
+            <td>145</td>
+            <td>10</td>
+            <td>7400</td>
+            <td>148</td>
+            <td>54.8</td>
+            <td>8200</td>
+            <td>90.2</td>
+            <td>13</td>
+            <td>39</td>
+            <td>780</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td><img src="bangladesh.png" class="player-logo" alt="Bangladesh">Tamim Iqbal</td>
+            <td>225</td>
+            <td>220</td>
+            <td>15</td>
+            <td>8000</td>
+            <td>158</td>
+            <td>41.0</td>
+            <td>9700</td>
+            <td>82.5</td>
+            <td>14</td>
+            <td>50</td>
+            <td>950</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Rohit Sharma</td>
+            <td>240</td>
+            <td>235</td>
+            <td>30</td>
+            <td>9800</td>
+            <td>264</td>
+            <td>48.5</td>
+            <td>10800</td>
+            <td>90.7</td>
+            <td>30</td>
+            <td>47</td>
+            <td>850</td>
+            <td>220</td>
+        </tr>
+        <tr>
+            <td><img src="srilanka.png" class="player-logo" alt="Sri Lanka">Angelo Mathews</td>
+            <td>220</td>
+            <td>205</td>
+            <td>50</td>
+            <td>6300</td>
+            <td>139*</td>
+            <td>45.7</td>
+            <td>7000</td>
+            <td>85.0</td>
+            <td>5</td>
+            <td>40</td>
+            <td>600</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td><img src="westindies.png" class="player-logo" alt="West Indies">Shai Hope</td>
+            <td>120</td>
+            <td>115</td>
+            <td>20</td>
+            <td>5100</td>
+            <td>146*</td>
+            <td>51.0</td>
+            <td>5900</td>
+            <td>86.4</td>
+            <td>13</td>
+            <td>25</td>
+            <td>500</td>
+            <td>30</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Test Batters Stats Table -->
+<table id="test-batters" class="stats-table">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Matches</th>
+            <th>Innings</th>
+            <th>Not Out</th>
+            <th>Runs</th>
+            <th>Highest Score</th>
+            <th>Average</th>
+            <th>Balls Faced</th>
+            <th>Strike Rate</th>
+            <th>100s</th>
+            <th>50s</th>
+            <th>4s</th>
+            <th>6s</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Virat Kohli</td>
+            <td>112</td>
+            <td>203</td>
+            <td>28</td>
+            <td>8200</td>
+            <td>254*</td>
+            <td>53.0</td>
+            <td>16000</td>
+            <td>51.25</td>
+            <td>27</td>
+            <td>27</td>
+            <td>800</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">Marnus Labuschagne</td>
+            <td>30</td>
+            <td>58</td>
+            <td>6</td>
+            <td>2800</td>
+            <td>215</td>
+            <td>60.0</td>
+            <td>4500</td>
+            <td>62.2</td>
+            <td>9</td>
+            <td>12</td>
+            <td>400</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">Steve Smith</td>
+            <td>94</td>
+            <td>173</td>
+            <td>15</td>
+            <td>8000</td>
+            <td>239*</td>
+            <td>61.2</td>
+            <td>12500</td>
+            <td>60.3</td>
+            <td>27</td>
+            <td>35</td>
+            <td>750</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td><img src="england.png" class="player-logo" alt="England">Joe Root</td>
+            <td>118</td>
+            <td>214</td>
+            <td>25</td>
+            <td>10500</td>
+            <td>180*</td>
+            <td>50.0</td>
+            <td>18000</td>
+            <td>58.3</td>
+            <td>26</td>
+            <td>53</td>
+            <td>950</td>
+            <td>55</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Rohit Sharma</td>
+            <td>50</td>
+            <td>85</td>
+            <td>12</td>
+            <td>3000</td>
+            <td>175</td>
+            <td>45.0</td>
+            <td>4700</td>
+            <td>64.5</td>
+            <td>7</td>
+            <td>20</td>
+            <td>350</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td><img src="southafrica.png" class="player-logo" alt="South Africa">Dean Elgar</td>
+            <td>70</td>
+            <td>130</td>
+            <td>10</td>
+            <td>4500</td>
+            <td>160</td>
+            <td>40.0</td>
+            <td>7500</td>
+            <td>60.0</td>
+            <td>8</td>
+            <td>22</td>
+            <td>550</td>
+            <td>35</td>
+        </tr>
+        <tr>
+            <td><img src="newzealand.png" class="player-logo" alt="New Zealand">Kane Williamson</td>
+            <td>87</td>
+            <td>160</td>
+            <td>14</td>
+            <td>7000</td>
+            <td>242*</td>
+            <td>50.0</td>
+            <td>11000</td>
+            <td>63.6</td>
+            <td>24</td>
+            <td>32</td>
+            <td>800</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Ajinkya Rahane</td>
+            <td>80</td>
+            <td>150</td>
+            <td>14</td>
+            <td>5000</td>
+            <td>155*</td>
+            <td>45.0</td>
+            <td>7200</td>
+            <td>55.0</td>
+            <td>11</td>
+            <td>20</td>
+            <td>600</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Cheteshwar Pujara</td>
+            <td>98</td>
+            <td>180</td>
+            <td>15</td>
+            <td>6500</td>
+            <td>156*</td>
+            <td>52.2</td>
+            <td>9500</td>
+            <td>68.4</td>
+            <td>18</td>
+            <td>32</td>
+            <td>700</td>
+            <td>35</td>
+        </tr>
+        <tr>
+            <td><img src="england.png" class="player-logo" alt="England">Ben Stokes</td>
+            <td>70</td>
+            <td>130</td>
+            <td>12</td>
+            <td>4000</td>
+            <td>200*</td>
+            <td>45.0</td>
+            <td>5500</td>
+            <td>72.7</td>
+            <td>9</td>
+            <td>15</td>
+            <td>400</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td><img src="westindies.png" class="player-logo" alt="West Indies">Shai Hope</td>
+            <td>55</td>
+            <td>110</td>
+            <td>15</td>
+            <td>4000</td>
+            <td>140*</td>
+            <td>42.0</td>
+            <td>6000</td>
+            <td>62.5</td>
+            <td>7</td>
+            <td>20</td>
+            <td>450</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td><img src="southafrica.png" class="player-logo" alt="South Africa">Aiden Markram</td>
+            <td>40</td>
+            <td>75</td>
+            <td>9</td>
+            <td>2500</td>
+            <td>150*</td>
+            <td>38.0</td>
+            <td>3700</td>
+            <td>68.2</td>
+            <td>6</td>
+            <td>16</td>
+            <td>350</td>
+            <td>25</td>
+        </tr>
+    </tbody>
+</table>
+
+       <!-- ODI Bowlers Stats Table -->
+<table id="odi-bowlers" class="stats-table hidden">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Matches</th>
+            <th>Innings</th>
+            <th>Wickets</th>
+            <th>Overs</th>
+            <th>Runs</th>
+            <th>Best Bowling (BBI)</th>
+            <th>Average</th>
+            <th>Economy</th>
+            <th>Strike Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="afghanistan.png" class="player-logo" alt="Afghanistan">Rashid Khan</td>
+            <td>90</td>
+            <td>88</td>
+            <td>180</td>
+            <td>810</td>
+            <td>3800</td>
+            <td>7/18</td>
+            <td>21.1</td>
+            <td>4.7</td>
+            <td>27.0</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Jasprit Bumrah</td>
+            <td>90</td>
+            <td>89</td>
+            <td>120</td>
+            <td>750</td>
+            <td>3400</td>
+            <td>5/27</td>
+            <td>28.3</td>
+            <td>4.5</td>
+            <td>37.5</td>
+        </tr>
+        <tr>
+            <td><img src="bangladesh.png" class="player-logo" alt="Bangladesh">Shakib Al Hasan</td>
+            <td>230</td>
+            <td>225</td>
+            <td>290</td>
+            <td>2100</td>
+            <td>9500</td>
+            <td>5/29</td>
+            <td>32.8</td>
+            <td>4.5</td>
+            <td>43.4</td>
+        </tr>
+        <tr>
+            <td><img src="pakistan.png" class="player-logo" alt="Pakistan">Shaheen Afridi</td>
+            <td>80</td>
+            <td>78</td>
+            <td>150</td>
+            <td>650</td>
+            <td>3000</td>
+            <td>6/35</td>
+            <td>20.0</td>
+            <td>4.6</td>
+            <td>26.0</td>
+        </tr>
+        <tr>
+            <td><img src="england.png" class="player-logo" alt="England">Adil Rashid</td>
+            <td>125</td>
+            <td>120</td>
+            <td>160</td>
+            <td>1100</td>
+            <td>5200</td>
+            <td>5/49</td>
+            <td>32.5</td>
+            <td>4.7</td>
+            <td>41.3</td>
+        </tr>
+        <tr>
+            <td><img src="newzealand.png" class="player-logo" alt="New Zealand">Trent Boult</td>
+            <td>100</td>
+            <td>98</td>
+            <td>180</td>
+            <td>850</td>
+            <td>3900</td>
+            <td>6/33</td>
+            <td>21.7</td>
+            <td>4.6</td>
+            <td>28.3</td>
+        </tr>
+        <tr>
+            <td><img src="srilanka.png" class="player-logo" alt="Sri Lanka">Wanindu Hasaranga</td>
+            <td>50</td>
+            <td>50</td>
+            <td>85</td>
+            <td>425</td>
+            <td>1900</td>
+            <td>5/26</td>
+            <td>22.3</td>
+            <td>4.5</td>
+            <td>30.0</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">Mitchell Starc</td>
+            <td>110</td>
+            <td>109</td>
+            <td>200</td>
+            <td>950</td>
+            <td>4400</td>
+            <td>6/28</td>
+            <td>22.0</td>
+            <td>4.6</td>
+            <td>28.5</td>
+        </tr>
+        <tr>
+            <td><img src="southafrica.png" class="player-logo" alt="South Africa">Kagiso Rabada</td>
+            <td>80</td>
+            <td>79</td>
+            <td>140</td>
+            <td>600</td>
+            <td>2800</td>
+            <td>5/34</td>
+            <td>25.0</td>
+            <td>4.7</td>
+            <td>34.2</td>
+        </tr>
+        <tr>
+            <td><img src="westindies.png" class="player-logo" alt="West Indies">Alzarri Joseph</td>
+            <td>65</td>
+            <td>64</td>
+            <td>110</td>
+            <td>500</td>
+            <td>2500</td>
+            <td>5/40</td>
+            <td>22.7</td>
+            <td>5.0</td>
+            <td>30.5</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+        <!-- Test Bowlers Stats Table -->
+<table id="test-bowlers" class="stats-table">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Matches</th>
+            <th>Innings</th>
+            <th>Wickets</th>
+            <th>Overs</th>
+            <th>Runs</th>
+            <th>BBI</th>
+            <th>Average</th>
+            <th>Economy</th>
+            <th>Strike Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Ravichandran Ashwin</td>
+            <td>90</td>
+            <td>170</td>
+            <td>450</td>
+            <td>3200</td>
+            <td>9000</td>
+            <td>7/59</td>
+            <td>25.2</td>
+            <td>2.8</td>
+            <td>55.1</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">Pat Cummins</td>
+            <td>60</td>
+            <td>110</td>
+            <td>250</td>
+            <td>2500</td>
+            <td>7500</td>
+            <td>6/23</td>
+            <td>30.0</td>
+            <td>3.0</td>
+            <td>60.0</td>
+        </tr>
+        <tr>
+            <td><img src="england.png" class="player-logo" alt="England">James Anderson</td>
+            <td>180</td>
+            <td>320</td>
+            <td>675</td>
+            <td>7000</td>
+            <td>21000</td>
+            <td>7/43</td>
+            <td>27.2</td>
+            <td>2.7</td>
+            <td>58.5</td>
+        </tr>
+        <tr>
+            <td><img src="southafrica.png" class="player-logo" alt="South Africa">Kagiso Rabada</td>
+            <td>80</td>
+            <td>150</td>
+            <td>350</td>
+            <td>3200</td>
+            <td>8800</td>
+            <td>6/50</td>
+            <td>25.1</td>
+            <td>3.0</td>
+            <td>50.5</td>
+        </tr>
+        <tr>
+            <td><img src="newzealand.png" class="player-logo" alt="New Zealand">Tim Southee</td>
+            <td>90</td>
+            <td>170</td>
+            <td>360</td>
+            <td>3500</td>
+            <td>9500</td>
+            <td>7/64</td>
+            <td>26.3</td>
+            <td>2.8</td>
+            <td>55.7</td>
+        </tr>
+        <tr>
+            <td><img src="pakistan.png" class="player-logo" alt="Pakistan">Shaheen Afridi</td>
+            <td>45</td>
+            <td>90</td>
+            <td>150</td>
+            <td>1500</td>
+            <td>4500</td>
+            <td>5/28</td>
+            <td>30.0</td>
+            <td>3.0</td>
+            <td>60.0</td>
+        </tr>
+        <tr>
+            <td><img src="srilanka.png" class="player-logo" alt="Sri Lanka">Lasith Embuldeniya</td>
+            <td>30</td>
+            <td>60</td>
+            <td>80</td>
+            <td>800</td>
+            <td>2500</td>
+            <td>6/30</td>
+            <td>31.2</td>
+            <td>3.1</td>
+            <td>62.5</td>
+        </tr>
+        <tr>
+            <td><img src="westindies.png" class="player-logo" alt="West Indies">Jason Holder</td>
+            <td>60</td>
+            <td>120</td>
+            <td>150</td>
+            <td>1500</td>
+            <td>4500</td>
+            <td>6/42</td>
+            <td>30.0</td>
+            <td>3.0</td>
+            <td>60.0</td>
+        </tr>
+        <tr>
+            <td><img src="england.png" class="player-logo" alt="England">Stuart Broad</td>
+            <td>160</td>
+            <td>300</td>
+            <td>550</td>
+            <td>6500</td>
+            <td>20000</td>
+            <td>8/15</td>
+            <td>27.1</td>
+            <td>2.8</td>
+            <td>55.2</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">Nathan Lyon</td>
+            <td>110</td>
+            <td>200</td>
+            <td>440</td>
+            <td>4000</td>
+            <td>11000</td>
+            <td>8/50</td>
+            <td>25.0</td>
+            <td>2.5</td>
+            <td>55.0</td>
+        </tr>
+        <tr>
+            <td><img src="afghanistan.png" class="player-logo" alt="Afghanistan">Rashid Khan</td>
+            <td>25</td>
+            <td>50</td>
+            <td>75</td>
+            <td>900</td>
+            <td>2200</td>
+            <td>7/60</td>
+            <td>29.3</td>
+            <td>3.1</td>
+            <td>56.5</td>
+        </tr>
+        <tr>
+            <td><img src="bangladesh.png" class="player-logo" alt="Bangladesh">Shakib Al Hasan</td>
+            <td>70</td>
+            <td>140</td>
+            <td>210</td>
+            <td>3000</td>
+            <td>8500</td>
+            <td>7/36</td>
+            <td>27.5</td>
+            <td>2.8</td>
+            <td>58.0</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- T20 Batters Stats Table -->
+<table id="t20-batters" class="stats-table">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Matches</th>
+            <th>Innings</th>
+            <th>Not Out</th>
+            <th>Runs</th>
+            <th>Highest Score</th>
+            <th>Average</th>
+            <th>Balls Faced</th>
+            <th>Strike Rate</th>
+            <th>100s</th>
+            <th>50s</th>
+            <th>4s</th>
+            <th>6s</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Virat Kohli</td>
+            <td>99</td>
+            <td>92</td>
+            <td>12</td>
+            <td>3300</td>
+            <td>122*</td>
+            <td>53.2</td>
+            <td>2600</td>
+            <td>138.2</td>
+            <td>1</td>
+            <td>30</td>
+            <td>290</td>
+            <td>85</td>
+        </tr>
+        <tr>
+            <td><img src="pakistan.png" class="player-logo" alt="Pakistan">Babar Azam</td>
+            <td>80</td>
+            <td>78</td>
+            <td>10</td>
+            <td>2300</td>
+            <td>122</td>
+            <td>38.6</td>
+            <td>1800</td>
+            <td>126.4</td>
+            <td>2</td>
+            <td>22</td>
+            <td>250</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">Glenn Maxwell</td>
+            <td>70</td>
+            <td>67</td>
+            <td>8</td>
+            <td>2200</td>
+            <td>145*</td>
+            <td>40.0</td>
+            <td>1500</td>
+            <td>145.0</td>
+            <td>4</td>
+            <td>25</td>
+            <td>200</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Rohit Sharma</td>
+            <td>140</td>
+            <td>138</td>
+            <td>18</td>
+            <td>3400</td>
+            <td>118*</td>
+            <td>34.0</td>
+            <td>2500</td>
+            <td>140.5</td>
+            <td>4</td>
+            <td>28</td>
+            <td>300</td>
+            <td>65</td>
+        </tr>
+        <tr>
+            <td><img src="newzealand.png" class="player-logo" alt="New Zealand">Martin Guptill</td>
+            <td>120</td>
+            <td>115</td>
+            <td>15</td>
+            <td>3500</td>
+            <td>127*</td>
+            <td>34.6</td>
+            <td>2800</td>
+            <td>130.5</td>
+            <td>3</td>
+            <td>30</td>
+            <td>350</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td><img src="southafrica.png" class="player-logo" alt="South Africa">Quinton de Kock</td>
+            <td>70</td>
+            <td>68</td>
+            <td>10</td>
+            <td>2200</td>
+            <td>96*</td>
+            <td>35.6</td>
+            <td>1700</td>
+            <td>129.5</td>
+            <td>1</td>
+            <td>20</td>
+            <td>300</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td><img src="england.png" class="player-logo" alt="England">Jos Buttler</td>
+            <td>80</td>
+            <td>75</td>
+            <td>10</td>
+            <td>2500</td>
+            <td>110*</td>
+            <td>40.3</td>
+            <td>2000</td>
+            <td>140.2</td>
+            <td>2</td>
+            <td>22</td>
+            <td>280</td>
+            <td>70</td>
+        </tr>
+        <tr>
+            <td><img src="westindies.png" class="player-logo" alt="West Indies">Nicholas Pooran</td>
+            <td>50</td>
+            <td>48</td>
+            <td>7</td>
+            <td>1500</td>
+            <td>94*</td>
+            <td>32.0</td>
+            <td>1250</td>
+            <td>130.0</td>
+            <td>1</td>
+            <td>18</td>
+            <td>200</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td><img src="bangladesh.png" class="player-logo" alt="Bangladesh">Shakib Al Hasan</td>
+            <td>50</td>
+            <td>48</td>
+            <td>7</td>
+            <td>1200</td>
+            <td>85*</td>
+            <td>30.0</td>
+            <td>1000</td>
+            <td>120.0</td>
+            <td>0</td>
+            <td>15</td>
+            <td>150</td>
+            <td>35</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Suryakumar Yadav</td>
+            <td>50</td>
+            <td>49</td>
+            <td>5</td>
+            <td>1700</td>
+            <td>117*</td>
+            <td>38.0</td>
+            <td>1400</td>
+            <td>130.0</td>
+            <td>2</td>
+            <td>20</td>
+            <td>220</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td><img src="pakistan.png" class="player-logo" alt="Pakistan">Mohammad Rizwan</td>
+            <td>70</td>
+            <td>65</td>
+            <td>8</td>
+            <td>2000</td>
+            <td>104*</td>
+            <td>35.7</td>
+            <td>1600</td>
+            <td>125.5</td>
+            <td>0</td>
+            <td>15</td>
+            <td>210</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">David Warner</td>
+            <td>80</td>
+            <td>75</td>
+            <td>10</td>
+            <td>2400</td>
+            <td>130*</td>
+            <td>37.2</td>
+            <td>2000</td>
+            <td>140.0</td>
+            <td>1</td>
+            <td>22</td>
+            <td>220</td>
+            <td>55</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- T20 Bowlers Stats Table -->
+<table id="t20-bowlers" class="stats-table hidden">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Matches</th>
+            <th>Innings</th>
+            <th>Wickets</th>
+            <th>Overs</th>
+            <th>Runs</th>
+            <th>Best Bowling (BBI)</th>
+            <th>Average</th>
+            <th>Economy</th>
+            <th>Strike Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="afghanistan.png" class="player-logo" alt="Afghanistan">Rashid Khan</td>
+            <td>70</td>
+            <td>68</td>
+            <td>120</td>
+            <td>280</td>
+            <td>1600</td>
+            <td>5/3</td>
+            <td>13.3</td>
+            <td>6.0</td>
+            <td>16.0</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Jasprit Bumrah</td>
+            <td>60</td>
+            <td>58</td>
+            <td>80</td>
+            <td>240</td>
+            <td>1300</td>
+            <td>3/14</td>
+            <td>16.3</td>
+            <td>5.4</td>
+            <td>18.0</td>
+        </tr>
+        <tr>
+            <td><img src="england.png" class="player-logo" alt="England">Adil Rashid</td>
+            <td>80</td>
+            <td>78</td>
+            <td>90</td>
+            <td>300</td>
+            <td>1400</td>
+            <td>4/20</td>
+            <td>18.0</td>
+            <td>4.7</td>
+            <td>20.0</td>
+        </tr>
+        <tr>
+            <td><img src="australia.png" class="player-logo" alt="Australia">Mitchell Starc</td>
+            <td>50</td>
+            <td>48</td>
+            <td>85</td>
+            <td>200</td>
+            <td>1000</td>
+            <td>4/15</td>
+            <td>14.7</td>
+            <td>5.0</td>
+            <td>18.5</td>
+        </tr>
+        <tr>
+            <td><img src="newzealand.png" class="player-logo" alt="New Zealand">Trent Boult</td>
+            <td>60</td>
+            <td>58</td>
+            <td>100</td>
+            <td>240</td>
+            <td>1200</td>
+            <td>4/18</td>
+            <td>12.0</td>
+            <td>5.0</td>
+            <td>16.5</td>
+        </tr>
+        <tr>
+            <td><img src="southafrica.png" class="player-logo" alt="South Africa">Kagiso Rabada</td>
+            <td>60</td>
+            <td>59</td>
+            <td>95</td>
+            <td>230</td>
+            <td>1100</td>
+            <td>3/17</td>
+            <td>14.6</td>
+            <td>4.8</td>
+            <td>18.8</td>
+        </tr>
+        <tr>
+            <td><img src="pakistan.png" class="player-logo" alt="Pakistan">Shaheen Afridi</td>
+            <td>55</td>
+            <td>54</td>
+            <td>75</td>
+            <td>210</td>
+            <td>1000</td>
+            <td>3/22</td>
+            <td>14.5</td>
+            <td>4.7</td>
+            <td>20.0</td>
+        </tr>
+        <tr>
+            <td><img src="bangladesh.png" class="player-logo" alt="Bangladesh">Shakib Al Hasan</td>
+            <td>70</td>
+            <td>69</td>
+            <td>85</td>
+            <td>250</td>
+            <td>1200</td>
+            <td>4/19</td>
+            <td>14.1</td>
+            <td>4.8</td>
+            <td>19.0</td>
+        </tr>
+        <tr>
+            <td><img src="westindies.png" class="player-logo" alt="West Indies">Sunil Narine</td>
+            <td>60</td>
+            <td>59</td>
+            <td>95</td>
+            <td>240</td>
+            <td>1150</td>
+            <td>4/12</td>
+            <td>12.1</td>
+            <td>4.8</td>
+            <td>20.5</td>
+        </tr>
+        <tr>
+            <td><img src="srilanka.png" class="player-logo" alt="Sri Lanka">Wanindu Hasaranga</td>
+            <td>50</td>
+            <td>49</td>
+            <td>85</td>
+            <td>220</td>
+            <td>1050</td>
+            <td>5/21</td>
+            <td>13.0</td>
+            <td>4.6</td>
+            <td>18.6</td>
+        </tr>
+        <tr>
+            <td><img src="india.png" class="player-logo" alt="India">Yuzvendra Chahal</td>
+            <td>70</td>
+            <td>68</td>
+            <td>110</td>
+            <td>290</td>
+            <td>1400</td>
+            <td>4/30</td>
+            <td>12.7</td>
+            <td>4.8</td>
+            <td>19.5</td>
+        </tr>
+        <tr>
+            <td><img src="afghanistan.png" class="player-logo" alt="Afghanistan">Mujeeb Ur Rahman</td>
+            <td>60</td>
+            <td>59</td>
+            <td>100</td>
+            <td>240</td>
+            <td>1100</td>
+            <td>3/19</td>
+            <td>11.0</td>
+            <td>4.5</td>
+            <td>18.5</td>
+        </tr>
+    </tbody>
+</table>
+
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Formats</title>
+  <meta name="description" content="Explore the fascinating world of ODI, T20, and Test cricket formats.">
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #2193b0, #6dd5ed);
+      background-size: cover;
+      background-position: center;
+      overflow-x: hidden;
+    }
+
+         /* Navbar Styles */
+         nav {
+    height: 80px;
+    width: 100%;
+    background-color: rgba(28, 94, 179, 0.2);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: flex-end; /* Aligns the nav to the right */
+    align-items: center;
+    padding-right: 20px; /* Adds some space on the right */
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    margin: 0;
+    flex-grow: 1;
+    padding-left: 50px; /* Increased spacing */
+    padding-top: 30px;
+}
+
+.nav-menu li {
+    margin: 0 35px; /* Increased spacing between menu items */
+    position: relative;
+}
+
+.nav-menu li:not(:first-child):not(:nth-child(1)):not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -30px;  /* Adjust spacing */
+    top: 30%;
+    transform: translateY(-50%);
+    height: 60px;  /* Adjust height as needed */
+    width: 2px;  /* Thickness of the line */
+    background-color: white; /* Change color as needed */
+}
+
+
+.nav-menu a {
+    text-decoration: none;
+    font-size: 1.5em; /* Increased text size */
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #FFD700;
+}
+
+.nav-logo {
+        height: 60px; 
+        width: auto;  
+        margin-left: 20px;
+        margin-top: -15px;
+        }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 10px 0 0;
+      font-style: italic;
+    }
+
+    /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: rgba(28, 94, 179, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            z-index: 1;
+            width: 180px;
+            top: 100%;
+            left: 0;
+            border-radius: 10px;
+        }
+
+        .dropdown-menu li {
+            padding: 5px 0;
+        }
+
+        .dropdown-menu li a {
+            color: white;
+            font-size: 1em;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+    /* Team Container */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 100px 20px 20px;
+      margin-top: -50px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: black;
+    }
+
+    .card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .card img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-bottom: 4px solid #004080;
+    }
+
+    .card h3 {
+      margin: 15px 0;
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #00274d;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul class="nav-menu">
+                <li>
+                    <a href="admin-home.html">
+                    <img src="logo.jpg" alt="Logo" class='nav-logo'>
+                </a>
+                </li>
+                <li><a href="admin-home.html" class="active">Home</a></li>
+                <li><a href="registered-users.php">Registered Users</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Support</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="admin_dashboard.php">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li><a href="registration.php">Signout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <header style="padding-top: 80px;">
+    <h1 style="text-align: center; color: cyan;">Cricket Formats</h1>
+    <p style="text-align: center; color: cyan;">Explore the fascinating world of ODI, T20, and Test cricket</p>
+  </header>
+  
+
+  <div class="container">
+    <a href="admin-odi.html" class="card">
+      <img src="https://th.bing.com/th/id/OIP.jmnDcsTsqLuOChNzLz6YmAAAAA?rs=1&pid=ImgDetMain" alt="ODI Cricket Logo">
+      <h3>ODI Teams</h3>
+    </a>
+    <a href="admin-test.html" class="card">
+      <img src="https://circleofcricket.com/post_image/post_image_6b42e8d.jpeg" alt="Test Cricket Logo">
+      <h3>Test Teams</h3>
+    </a>
+    <a href="admin-t20.html" class="card">
+      <img src="https://thecricketlounge.com/wp-content/uploads/2023/12/2024-Mens-T20I-World-Cup.webp" alt="T20 Cricket Logo">
+      <h3>T20 Teams</h3>
+    </a>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Cricket World | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      navMenu.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
+ 

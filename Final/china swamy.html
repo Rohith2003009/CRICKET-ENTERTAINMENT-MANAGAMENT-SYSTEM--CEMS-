@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chinnaswamy Stadium Cricket Ground</title>
+    <style>
+        /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Top Navigation Styles */
+.top-nav {
+    background-color: #2b2d42;
+    padding: 15px;
+    text-align: center;
+    color: whitesmoke;
+}
+
+/* Left Navigation Styles */
+.left-nav {
+    position: absolute;
+    top: 60px; /* Below top-nav */
+    left: 0;
+    background-color: #2b2d42;
+    height: 200%;
+    width: 130px;
+    padding-top: 30px;
+    display: none; /* Hide by default */
+    transition: all 0.3s; /* Smooth transition */
+}
+
+.left-nav.active {
+    display: block; /* Show when active */
+}
+
+.left-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.left-nav ul li {
+    margin: 20px 0;
+    text-align: center;
+    position: relative; /* Position relative for dropdown */
+}
+
+.left-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.left-nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #2b2d42;
+    min-width: 150px;
+    z-index: 1;
+}
+
+.dropdown li {
+    margin: 0;
+}
+
+.left-nav ul li:hover .dropdown {
+    display: block; /* Show dropdown on hover */
+}
+
+/* Main Section Styles */
+main {
+    margin-left: 150px; /* Space for left nav */
+    padding: 20px;
+    background-color: transparent;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Gallery Styles */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Adjusted to 2 columns */
+    gap: 10px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio */
+    border: 2px solid #ccc;
+}
+
+.gallery-grid img:hover {
+    border-color: #2b2d42;
+}
+
+/* Label Styles */
+.gallery-grid label {
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    font-weight: bold; /* Make labels bold */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #2b2d42;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Style for Inline Images */
+.inline-image {
+    width: 200px;
+    height: auto;
+    float: right;
+    margin-left: 20px;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 6px 0;
+    transition: all 0.3s;
+}
+
+/* Map Styles */
+.map-container {
+    width: 100%;
+    height: 400px; /* Height of the map */
+    margin-top: 20px; /* Space above the map */
+}
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%; /* Width of the image */
+    max-width: 700px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <h1>Welcome to Eden Garden's Cricket Ground</h1>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Left Navigation -->
+    <div class="left-nav" id="left-nav">
+        <ul>
+            <li><a href="#history">History</a></li>
+            
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section id="About">
+            <h2>Chinnaswamy Stadium</h2>
+            <p>
+                <img src="Chinnaswamy_Stadium.jpg" alt="Chinnaswamy Stadium" class="inline-image">
+                Chinnaswamy Stadium, officially known as M. Chinnaswamy Stadium, is an international cricket stadium located in Bengaluru, India. Established in 1969, it is one of the premier cricket venues in India with a seating capacity of around 40,000. The stadium is owned by the Karnataka State Cricket Association (KSCA) and serves as the home ground for the Royal Challengers Bangalore (RCB) in the Indian Premier League (IPL).
+            </p>
+            <p>
+                Chinnaswamy Stadium is renowned for its unique architecture and vibrant atmosphere. It has hosted numerous significant matches, including several World Cup games and the inaugural match of the Indian Premier League in 2008. The stadium has witnessed remarkable performances and is considered a crucial venue in Indian cricket history.
+            </p>
+        </section>
+        
+        <section id="History">
+            <h2>History</h2>
+            <p>
+                <img src="historychinaswaamy.jpeg" alt="Chinnaswamy Stadium History" class="inline-image">
+                The stadium was established in 1969 and named after M. Chinnaswamy, a former president of the Karnataka State Cricket Association. The venue has undergone several renovations to modernize its facilities and enhance the spectator experience.
+            </p>
+            <p>
+                The first Test match at Chinnaswamy Stadium took place in 1974 between India and Australia. Over the years, the stadium has hosted numerous historic matches, including the 1987 Cricket World Cup and the 1996 World Cup matches. The stadium is known for its electrifying atmosphere, particularly during IPL matches, where it often sees packed crowds.
+            </p>
+            <p>
+                Chinnaswamy Stadium has been the site of memorable moments in cricket history, including India's famous victory against Australia in the 2001 Test series, where VVS Laxman and Rahul Dravid led a remarkable comeback. The stadium is also notable for its significant renovations ahead of major tournaments, including a notable expansion of seating capacity and modernizing facilities in the 2000s.
+            </p>
+            <p>
+                The stadium is located in the heart of Bengaluru, surrounded by lush gardens and historic landmarks, making it a popular venue not just for cricket but also for other events, including concerts and cultural festivals.
+            </p>
+        </section>
+        
+        <section id="about">
+            <h2>About Chinnaswamy Stadium</h2>
+            <p>
+                M. Chinnaswamy Stadium is one of the most iconic cricket stadiums in India, celebrated for its rich heritage, vibrant crowd, and state-of-the-art facilities. With a seating capacity of approximately 40,000, it has become a significant part of Bengaluru's cultural landscape and the Indian cricketing ethos.
+            </p>
+            <p>
+                The stadium has played host to many significant international matches, including World Cup games and T20 internationals. As the home ground for Royal Challengers Bangalore, it is often filled with passionate fans who create an electric atmosphere during IPL matches.
+            </p>
+            <p>
+                Chinnaswamy Stadium is also known for its compact size and steep stands, which contribute to the close interaction between players and spectators. The stadium has seen record attendances, with fans coming together to support their teams.
+            </p>
+            <p>
+                In addition to cricket, the venue has hosted various cultural events and concerts, showcasing its versatility as a premier venue in Bengaluru.
+            </p>
+        </section>
+        
+        <section id="location-significance">
+            <h1>Location and Significance</h1>
+            <p>
+                <strong>Location:</strong> Chinnaswamy Stadium is located in the heart of Bengaluru, Karnataka, India, near the Cubbon Park and the Vidhana Soudha, the state's legislative building.<br>
+                <strong>Owner:</strong> The stadium is owned and operated by the Karnataka State Cricket Association (KSCA), which plays a crucial role in promoting and organizing cricket in the region.
+            </p>
+            <!-- Google Map Embed -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1650264119445!2d77.589978!3d12.974456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae142e5cf8913d%3A0xe7f4ec8f1db9e87b!2sM%20Chinnaswamy%20Stadium!5e0!3m2!1sen!2sin!4v1697802001956!5m2!1sen!2sin" 
+                    width="90%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+        
+        <section id="facilities">
+            <h2>Facilities at Chinnaswamy Stadium</h2>
+            <p>
+                Chinnaswamy Stadium boasts modern facilities that cater to players, officials, and spectators, making it one of the premier cricket venues in India. Here are some key facilities offered:
+            </p>
+            <ul>
+                <li><strong>Seating Capacity:</strong> The stadium has a seating capacity of around 40,000, providing great views for spectators.</li>
+                <li><strong>Clubhouse:</strong> The clubhouse includes amenities for players and officials, including lounges and meeting rooms.</li>
+                <li><strong>Player Facilities:</strong> The stadium features modern dressing rooms, practice nets, and training areas equipped with top-notch facilities.</li>
+                <li><strong>Media and Press Facilities:</strong> There is a dedicated media center with press boxes and high-speed internet for broadcasters.</li>
+                <li><strong>Corporate Boxes:</strong> Luxury corporate boxes are available for sponsors and VIP guests, offering premium seating and dining options.</li>
+                <li><strong>Floodlights:</strong> The stadium is equipped with high-quality floodlights, enabling day/night matches.</li>
+                <li><strong>Advanced Drainage System:</strong> An advanced drainage system ensures quick recovery of the outfield after rain.</li>
+                <li><strong>Food and Beverage Stalls:</strong> Numerous stalls and food courts provide refreshments for the audience during matches.</li>
+                <li><strong>Parking Facilities:</strong> Ample parking is available for vehicles on match days to accommodate large crowds.</li>
+                <li><strong>Public Restrooms:</strong> Clean and well-maintained restrooms are available throughout the stadium for spectator convenience.</li>
+            </ul>
+        </section>
+        
+        <section id="practice-ground">
+            <h2>Practice Ground at Chinnaswamy Stadium</h2>
+            <p>
+                <img src="parctice.jpg" alt="Chinnaswamy Stadium Practice Ground" class="inline-image">
+                The practice ground at Chinnaswamy Stadium is well-maintained and adjacent to the main stadium. It is used for training and practice sessions by both domestic and international teams. The ground features grass nets and modern facilities, providing an ideal environment for players to prepare.
+            </p>
+            <p>
+                During the IPL season, the practice ground is utilized by Royal Challengers Bangalore (RCB) and other teams for training sessions. The facility is equipped with floodlights to accommodate evening practices.
+            </p>
+            <p>
+                Additionally, the practice ground occasionally hosts coaching clinics and camps to nurture young cricketing talent in the region, allowing aspiring players to train at this prestigious venue.
+            </p>
+            <p>
+                Future upgrades are planned for the practice facilities, ensuring they continue to meet the evolving needs of players and coaches.
+            </p>
+        </section>
+        
+        <section id="tours">
+            <h2>Tours of Chinnaswamy Stadium</h2>
+            <p>
+                Chinnaswamy Stadium offers guided tours that immerse visitors in the rich history and significance of this iconic cricket venue. Tours typically include:
+            </p>
+            <ul>
+                <li>Access to the historic pavilion and player areas</li>
+                <li>A visit to the KSCA Museum, showcasing memorabilia and exhibits</li>
+                <li>A stroll across the lush outfield and onto the pitch</li>
+                <li>Insights into cricketing legends, unforgettable matches, and memorable moments that have taken place here</li>
+            </ul>
+            <p>
+                All tours are led by knowledgeable guides who share fascinating stories and facts about Chinnaswamy Stadium, from its inception to its role in major cricket tournaments. Book your tour in advance to ensure availability and enjoy a unique experience at one of the world's celebrated cricket venues!
+            </p>
+        </section>
+        
+        <section id="gallery">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <label for="">Channaswamy Stadium View</label>
+                <p>A breathtaking view of Channaswamy  , showcasing its vast seating and vibrant atmosphere during matches.</p>
+                <img src="view.1.jpg" alt="Eden Gardens Stadium view" onclick="openModal(this.src)">
+                <img src="view.2.jpeg" alt="Eden Gardens Stadium view" onclick="openModal(this.src)">
+                
+                <label for="">The Pavilion at Eden Gardens</label>
+                <p>The Pavilion at Channaswamy, an iconic structure that holds a rich cricketing history.</p>
+                <img src="pavilion.1.jpeg" alt="The Pavilion" onclick="openModal(this.src)">
+                <img src="pavilion.2.jpg" alt="The Pavilion" onclick="openModal(this.src)">
+            </div>
+        </section>
+
+        <section id="lords-ground-video">
+            <h2>Visual  M. Chinnaswamy Stadium Ground</h2>
+            <p>Experience the magnificent  M. Chinnaswamy Stadium Cricket Ground in motion. Watch the video below:</p>
+            
+            <!-- Video Section -->
+            <video autoplay muted loop id="bgVideo" src="chinnaseamy..mp4" width="900" height="800">
+                Your browser does not support the video tag.
+            </video>
+            <div style="text-align: left; margin-top: 15px;">
+               <a href="Stadium.html" style="color: #2b2d42; font-size: 25px; font-weight: bold; text-decoration: none; padding: 8px 12px; display: inline-block;">
+            Return Back
+        </a>
+    </div>
+        </section>
+        
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>
+                M. Chinnaswamy Stadium stands as a testament to India's rich cricketing heritage and the passion of its fans. With a history steeped in remarkable performances and a modern approach to facilities, it continues to be a central hub for cricket in India. Whether it's a thrilling IPL match or an international clash, the atmosphere at Chinnaswamy Stadium is unparalleled, making it a must-visit for cricket enthusiasts and tourists alike.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>Contact us at: info@lordscricket.com</p>
+        <p>&copy; 2024 Lord's Cricket Ground. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const leftNav = document.getElementById('left-nav');
+            leftNav.classList.toggle('active');
+        }
+        
+    function openModal(src) {
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+        modal.style.display = "block"; // Show the modal
+        modalImage.src = src; // Set the source of the image
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.style.display = "none"; // Hide the modal
+    }
+    function toggleMenu() {
+    var nav = document.getElementById('left-nav');
+    if (nav.classList.contains('active')) {
+        nav.classList.remove('active');
+    } else {
+        nav.classList.add('active');
+    }
+}
+
+</script>
+</body>
+</html>

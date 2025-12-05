@@ -1,0 +1,314 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to bottom, #2193b0, #6dd5ed);
+    background-size: cover;
+    background-position: center;
+}
+
+/* Container */
+.container {
+    width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    color: black;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+td img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Back Button */
+.back-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2193b0;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:active {
+    transform: translateY(2px);
+}
+
+/* Navbar Styling */
+nav {
+    background: hsla(233, 96%, 48.6%, 0.3);
+    padding: 10px 0;
+    box-shadow: 0 4px 6px hsla(128, 70.2%, 47.5%, 0.93);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-menu {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #ffd700;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.dropdown-menu li {
+    text-align: left;
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+    color: blue;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle::after {
+    font-size: 12px;
+}
+
+/* Option Cards */
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.option-card {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 150px;
+    text-align: center;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.option-card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Points Table Container */
+.points-table-container {
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.points-table-container h1 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Team Cards */
+.team-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+}
+
+.team-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.team-card:hover {
+    transform: scale(1.05);
+}
+
+.team-card .rank {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.team-card .team-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.team-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin: 10px 0;
+}
+
+/* Points and Statistics */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.stats .highlight {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Recent Form */
+.recent-form {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-icons {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.form-icons span {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.form-win {
+    background-color: #28a745;
+}
+
+.form-loss {
+    background-color: #dc3545;
+}
+
+.form-no-result {
+    background-color: #6c757d;
+}
+
+/* Full Points Table Button */
+.full-points-button {
+    margin-top: 20px;
+}
+
+.full-points-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.full-points-button a:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Players Cricket Teams - 2024</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://www.shutterstock.com/image-illustration/karachi-pakistan-26-may-cricket-600nw-2308637453.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    .navbar {
+    display: flex;
+    gap: 15px; 
+    margin: 0; 
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #9fea08;
+    padding: 15px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw;
+    box-sizing: border-box;
+    z-index: 1000; 
+}
+
+
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+    .navbar-item img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    border: 50%; /* Makes the image round */
+    object-fit: cover; /* Ensures the image fills the round container */
+}
+
+.navbar-item img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6), 0 6px 20px rgba(255, 255, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .navbar-item p {
+        margin: 5px 0 0;
+        font-size: 18px;
+        color: #333;
+    }
+    .player-cards-container {
+        max-width: 950px;
+        text-align: center;
+    }
+    .player-cards {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    /* Base Style for Player Cards */
+.player-card {
+    width: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 15px;
+    text-align: center;
+}
+
+.player-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Team-specific shirt number colors */
+#team1 .shirt-number {
+    color: #ff6600; /* Team 1 (India) */
+    font-size: larger;
+}
+
+#team2 .shirt-number {
+    color: yellow;
+    font-size: larger;
+}
+
+#team3 .shirt-number {
+    color: black; 
+    font-size: larger;
+}
+
+#team4 .shirt-number {
+    color:black;
+    font-size: larger;
+}
+
+#team5 .shirt-number {
+    color: gold;
+    font-size: larger;
+}
+
+#team6 .shirt-number {
+    color: red; 
+    font-size: larger;
+}
+
+#team7 .shirt-number {
+    color: brown; 
+    font-size: larger;
+}
+
+#team8 .shirt-number {
+    color:  yellow; 
+    font-size: larger;
+}
+
+#team9 .shirt-number {
+    color:rgb(253, 8, 12); 
+    font-size: larger;
+}
+
+#team10 .shirt-number {
+    color:firebrick;
+    font-size: larger;
+}
+
+
+.player-info {
+    background-color: #e0f7fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.role, .age, .style {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Base Style for Team Sections */
+.team-section {
+    display: none; /* Hidden by default */
+}
+
+/* Team-Specific Hover Effects */
+#team1 .player-card:hover {
+    background-color: #b2ebf2; /* Cyan for India */
+    transform: scale(1.05);
+}
+
+#team2 .player-card:hover {
+    background-color: hsl(2, 100%, 61%); /* Light Orange for Australia */
+    transform: scale(1.05);
+}
+
+#team3 .player-card:hover {
+    background-color: #e5ff00; /* Light Green for South Africa */
+    transform: scale(1.05);
+}
+
+#team4 .player-card:hover {
+    background-color: #fc6198; /* Light Pink for England */
+    transform: scale(1.05);
+}
+
+#team5 .player-card:hover {
+    background-color: green; /* Light Purple for New Zealand */
+    transform: scale(1.05);
+}
+
+#team6 .player-card:hover {
+    background-color: #b1e052; /* Light Yellow for Pakistan */
+    transform: scale(1.05);
+}
+
+#team7 .player-card:hover {
+    background-color: skyblue;/* Light Coral for Sri Lanka */
+    transform: scale(1.05);
+}
+
+#team8 .player-card:hover {
+    background-color:  grey ;
+    transform: scale(1.05);
+}
+
+#team9 .player-card:hover {
+    background-color: rgb(100, 138, 252); /* Light Brown for West Indies */
+    transform: scale(1.05);
+}
+
+#team10 .player-card:hover {
+    background-color: rgb(104, 248, 109); 
+    transform: scale(1.05);
+}
+
+/* Display Active Team Section */
+.team-section.active {
+    display: block;
+}
+
+</style>
+<script>
+    // Define a mapping of team IDs to shirt number colors
+const teamColors = {
+    team1: 'cyan',
+    team2: 'orange',
+    team3: 'green',
+    team4: 'pink',
+    team5: 'purple',
+    team6: 'yellow',
+    team7: 'lightblue',
+    team8: 'gray',
+    team9: 'brown',
+    team10: 'lime'
+};
+
+// Apply colors dynamically
+for (const [teamId, color] of Object.entries(teamColors)) {
+    const teamSection = document.getElementById(teamId);
+    if (teamSection) {
+        const shirtNumbers = teamSection.querySelectorAll('.shirt-number');
+        shirtNumbers.forEach(shirtNumber => {
+            shirtNumber.style.color = color;
+        });
+    }
+}
+
+    function showTeamInfo(teamId) {
+        // Hide all team sections
+        var teamSections = document.querySelectorAll('.team-section');
+        teamSections.forEach(section => section.style.display = 'none');
+        
+        // Show the selected team section
+        document.getElementById(teamId).style.display = 'block';
+    }
+</script>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://th.bing.com/th/id/R.bc86467775a27418961d9c769e2b0ce3?rik=Cw%2fNfEQRTKbMfA&riu=http%3a%2f%2fwww.hdwallpaperslife.com%2fwp-content%2fuploads%2f2018%2f05%2fnational_flag_of_india_4k_5k.jpg&ehk=LHN0JbKLhTS%2fJDZoeubF97Yvek9Gi9hKTGqu1It%2fE6o%3d&risl=&pid=ImgRaw&r=0" alt="India" onclick="showTeamInfo('team1')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">India</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-TCYvCxerVJ-fzVHL3dC0UcPDdVkIi2wHGg&s" alt="England" onclick="showTeamInfo('team2')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">England</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://images.emojiterra.com/twitter/512px/1f1e6-1f1fa.png" alt="Australia" onclick="showTeamInfo('team3')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Australia</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://static.vecteezy.com/system/resources/previews/024/286/508/non_2x/illustration-of-west-indies-flag-design-vector.jpg" alt="West Indies" onclick="showTeamInfo('team4')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">West Indies</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://th.bing.com/th/id/R.03dfe7eff6bd22b375b17032c855f636?rik=85aJhcj4y9irWA&riu=http%3a%2f%2fwww.gcpr.net%2fwp-content%2fuploads%2f2014%2f04%2fPakistan-Flag.png&ehk=rQSzRXjfaWIfLOyL4lErAKgBRZ%2f2f27oa08adFeZG00%3d&risl=&pid=ImgRaw&r=0" alt="Pakistan" onclick="showTeamInfo('team5')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Pakistan</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://th.bing.com/th/id/R.2b85df47260d9e5c2c47dfaa744fa5ad?rik=EajTbUppeU1tRw&riu=http%3a%2f%2fexploringafrica.matrix.msu.edu%2fwp-content%2fuploads%2f2016%2f04%2fSouth-Africa-Flag.png&ehk=ogS13e30Y0oEfBWqlc2yLpenGzWHUJfRgrz05Z0AZq8%3d&risl=&pid=ImgRaw&r=0" alt="South Africa" onclick="showTeamInfo('team6')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">South Africa</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://th.bing.com/th/id/OIP.sdj0_bMP_BwiWGWpgWJ6kgHaEo?rs=1&pid=ImgDetMain" alt="Afghanistan" onclick="showTeamInfo('team7')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Afghanistan</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://th.bing.com/th/id/OIP.Zp7eO413lEt5XRKgtW2LvgAAAA?rs=1&pid=ImgDetMain" alt="New Zealand" onclick="showTeamInfo('team8')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">New Zealand</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://img.etimg.com/thumb/msid-42182570,width-672,resizemode-4,imgsize-25362/news/international/world-news/implement-1987-indo-sri-lanka-accord-demands-sri-lankas-tamil-national-alliance/implement-1987-indo-sri-lanka-accord-demands-sri-lankastamil-national-alliance.jpg" alt="Sri Lanka" onclick="showTeamInfo('team9')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Sri Lanka</p>
+        </div>
+        <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+            <img src="https://th.bing.com/th/id/OIP.bpn17ZoFze_aUDNkzXTrHAHaEc?rs=1&pid=ImgDetMain" alt="Bangladesh" onclick="showTeamInfo('team10')" style="width: 50px; height: 30px;">
+            <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Bangladesh</p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Indian Team Section -->
+    <div class="player-cards-container team-section" id="team1">
+        <div class="team-header">
+            <h2>Team India - T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+            <!-- Player 1 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/107_compress.png" alt="Rohit Sharma" class="player-photo">
+                <h3>Rohit Sharma</h3>
+                <div class="shirt-number">45</div>
+                <div class="player-info">
+                    <div class="role">Captain, Batter</div>
+                    <div class="age">Age: 37</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 2 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/164_compress.png" alt="Virat Kohli" class="player-photo">
+                <h3>Virat Kohli</h3>
+                <div class="shirt-number">18</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 36</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 3 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/1124_compress.png" alt="Jasprit Bumrah" class="player-photo">
+                <h3>Jasprit Bumrah</h3>
+                <div class="shirt-number">93</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 4 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/9_compress.png" alt="Ravindra Jadeja" class="player-photo">
+                <h3>Ravindra Jadeja</h3>
+                <div class="shirt-number">8</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: LHB, Left-arm Spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 5 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.Py4DL3OWoxM1aYS9N7wJCwHaEK?rs=1&pid=ImgDetMain" alt="Shreyas Iyer" class="player-photo">
+                <h3>Shreyas Iyer</h3>
+                <div class="shirt-number">41</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 28</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 6 -->
+            <div class="player-card">
+                <img src="https://i.pinimg.com/736x/f4/01/0c/f4010cab0c62ba9bb7ba5ae4af55e2b5.jpg" alt="Ishan Kishan" class="player-photo">
+                <h3>Ishan Kishan</h3>
+                <div class="shirt-number">32</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper</div>
+                    <div class="age">Age: 25</div>
+                    <div class="style">Style: LHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 7 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/3840_compress.png" alt="Mohammed Siraj" class="player-photo">
+                <h3>Mohammed Siraj</h3>
+                <div class="shirt-number">13</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 8 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/1745_compress.png" alt="Shardul Thakur" class="player-photo">
+                <h3>Shardul Thakur</h3>
+                <div class="shirt-number">54</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: RHB, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 9 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/1125_compress.png" alt="KL Rahul" class="player-photo">
+                <h3>KL Rahul</h3>
+                <div class="shirt-number">1</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batter</div>
+                    <div class="age">Age: 31</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 10 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/2740_compress.png" alt="Hardik Pandya" class="player-photo">
+                <h3>Hardik Pandya</h3>
+                <div class="shirt-number">33</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: RHB, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 11 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/261_compress.png" alt="Kuldeep Yadav" class="player-photo">
+                <h3>Kuldeep Yadav</h3>
+                <div class="shirt-number">23</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: LHB, Left-arm Chinaman</div>
+                </div>
+            </div>
+    
+            <!-- Player 12 -->
+            <div class="player-card">
+                <img src="https://documents.bcci.tv/resizedimageskirti/1212_compress.png" alt="Suryakumar Yadav" class="player-photo">
+                <h3>Suryakumar Yadav</h3>
+                <div class="shirt-number">63</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 33</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    
+
+    <div class="player-cards-container team-section" id="team2">
+        <div class="team-header">
+            <h2>Team England - T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+    
+            <!-- Player 1 -->
+            <div class="player-card">
+                <img src="https://miro.medium.com/v2/resize:fit:1200/1*8QdAIRVklXEQPe_IhMxwhw.jpeg" alt="Ben Stokes" class="player-photo">
+                <h3>Ben Stokes</h3>
+                <div class="shirt-number">55</div>
+                <div class="player-info">
+                    <div class="role">Captain, All-rounder</div>
+                    <div class="age">Age: 33</div>
+                    <div class="style">Style: LHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 2 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316639.1.png" alt="Joe Root" class="player-photo">
+                <h3>Joe Root</h3>
+                <div class="shirt-number">66</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 33</div>
+                    <div class="style">Style: RHB, Right-arm Off-spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 3 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383143.1.png" alt="Jos Buttler" class="player-photo">
+                <h3>Jos Buttler</h3>
+                <div class="shirt-number">63</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batter</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 4 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383157.1.png" alt="Jonny Bairstow" class="player-photo">
+                <h3>Jonny Bairstow</h3>
+                <div class="shirt-number">51</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batter</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 5 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th?id=OSK.HEROYjUq8cv_VfqPYDPwEXkHRH9sZkIEDOqSpfNMvZg7dZ8&w=312&h=200&c=15&rs=2&o=6&dpr=1.6&pid=SANGAM" alt="David Willey" class="player-photo">
+                <h3>David Willey</h3>
+                <div class="shirt-number">15</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: LHB, Left-arm Medium-fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 6 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383153.1.png" alt="Sam Curran" class="player-photo">
+                <h3>Sam Curran</h3>
+                <div class="shirt-number">58</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 26</div>
+                    <div class="style">Style: LHB, Left-arm Medium-fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 7 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316603.1.png" alt="Chris Woakes" class="player-photo">
+                <h3>Chris Woakes</h3>
+                <div class="shirt-number">19</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: RHB, Right-arm Medium-fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 8 -->
+            <div class="player-card">
+                <img src="https://e1.365dm.com/17/11/768x576/skysports-dawid-malan-england-ashes_4152772.jpg?20171111133142" alt="Dawid Malan" class="player-photo">
+                <h3>Dawid Malan</h3>
+                <div class="shirt-number">29</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 37</div>
+                    <div class="style">Style: LHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 9 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_640,q_50/lsci/db/PICTURES/CMS/322900/322910.png" alt="Reece Topley" class="player-photo">
+                <h3>Reece Topley</h3>
+                <div class="shirt-number">23</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: LHB, Left-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 10 -->
+            <div class="player-card">
+                <img src="https://i.dailymail.co.uk/1s/2019/05/21/21/13781258-0-image-a-12_1558471799846.jpg" alt="Jofra Archer" class="player-photo">
+                <h3>Jofra Archer</h3>
+                <div class="shirt-number">22</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 11 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.Cq8c7Z5qqpolCCjpsCpzFAHaFL?rs=1&pid=ImgDetMain" alt="Mark Wood" class="player-photo">
+                <h3>Mark Wood</h3>
+                <div class="shirt-number">33</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 12 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.sXQPv51iJmtX4H6dqyAzYQHaHa?pid=ImgDet&w=195&h=195&c=7&dpr=1.6" alt="Adil Rashid" class="player-photo">
+                <h3>Adil Rashid</h3>
+                <div class="shirt-number">95</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 36</div>
+                    <div class="style">Style: RHB, Right-arm Leg-spin</div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    
+    <div class="player-cards-container team-section" id="team3">
+        <div class="team-header">
+            <h2>Team Australia - T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+    
+            <!-- Player 1 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.pHAGpRIk9DUKmqjGzwSJqQHaHa?w=184&h=184&c=7&r=0&o=5&dpr=1.6&pid=1.7" alt="Pat Cummins" class="player-photo">
+                <h3>Pat Cummins</h3>
+                <div class="shirt-number">30</div>
+                <div class="player-info">
+                    <div class="role">Captain, Bowler</div>
+                    <div class="age">Age: 31</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 2 -->
+            <div class="player-card">
+                <img src="https://wallpaperaccess.com/full/2350550.jpg" alt="Steve Smith" class="player-photo">
+                <h3>Steve Smith</h3>
+                <div class="shirt-number">49</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: RHB, Right-arm Leg-spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 3 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.ZS5YvKRNtp7SFfjT_R7XwgAAAA?rs=1&pid=ImgDetMain" alt="David Warner" class="player-photo">
+                <h3>David Warner</h3>
+                <div class="shirt-number">31</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 37</div>
+                    <div class="style">Style: LHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 4 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.5F72hlOJ4VmUMsj9Xp7v1QHaHk?w=178&h=182&c=7&r=0&o=5&dpr=1.6&pid=1.7" alt="Glenn Maxwell" class="player-photo">
+                <h3>Glenn Maxwell</h3>
+                <div class="shirt-number">32</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: RHB, Right-arm Off-spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 5 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.HMvitq8nh6PK1HlbJXHaDQAAAA?w=173&h=180&c=7&r=0&o=5&dpr=1.6&pid=1.7" alt="Marcus Stoinis" class="player-photo">
+                <h3>Marcus Stoinis</h3>
+                <div class="shirt-number">24</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: RHB, Right-arm Medium-fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 6 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.yBwwDwhtC3Kc051OTbcr7gHaLH?w=115&h=180&c=7&r=0&o=5&dpr=1.6&pid=1.7" alt="Marnus Labuschagne" class="player-photo">
+                <h3>Marnus Labuschagne</h3>
+                <div class="shirt-number">33</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: RHB, Right-arm Leg-spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 7 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_w_1200/lsci/db/PICTURES/CMS/321500/321551.png" alt="Alex Carey" class="player-photo">
+                <h3>Alex Carey</h3>
+                <div class="shirt-number">7</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batter</div>
+                    <div class="age">Age: 33</div>
+                    <div class="style">Style: LHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 8 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321500/321549.png" alt="Adam Zampa" class="player-photo">
+                <h3>Adam Zampa</h3>
+                <div class="shirt-number">63</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: RHB, Right-arm Leg-spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 9 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.LGs2HeEOZXjdRoYxTO3QlwAAAA?rs=1&pid=ImgDetMain" alt="Josh Hazlewood" class="player-photo">
+                <h3>Josh Hazlewood</h3>
+                <div class="shirt-number">38</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 33</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 10 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.grMv2feccm54XNZd2oCEugAAAA?rs=1&pid=ImgDetMain" alt="Sean Abbott" class="player-photo">
+                <h3>Sean Abbott</h3>
+                <div class="shirt-number">27</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: RHB, Right-arm Medium-fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 11 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.TdlBYztNyNIsPf0D5jM0gwHaEK?w=1200&h=675&rs=1&pid=ImgDetMain" alt="Mitchell Starc" class="player-photo">
+                <h3>Mitchell Starc</h3>
+                <div class="shirt-number">56</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: LHB, Left-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 12 -->
+            <div class="player-card">
+                <img src="https://dailytimes.com.pk/assets/uploads/2023/02/Australias-Cameron-Green-unlikely-to-play-first-Test-against-India.jpg" alt="Cameron Green" class="player-photo">
+                <h3>Cameron Green</h3>
+                <div class="shirt-number">42</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 25</div>
+                    <div class="style">Style: RHB, Right-arm Medium-fast</div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    
+    <div class="player-cards-container team-section" id="team4">
+        <div class="team-header">
+            <h2>Team West indies- T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+    
+            <!-- Player 1 -->
+            <div class="player-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BYWFiMzg2MGYtNWVjNS00ZTJmLTk2MjctYzQ5YjFmYWUzODM3XkEyXkFqcGdeQXVyMDkwNTkwNg@@._V1_FMjpg_UX1000_.jpg" alt="Kieron Pollard" class="player-photo">
+                <h3>Kieron Pollard</h3>
+                <div class="shirt-number">55</div>
+                <div class="player-info">
+                    <div class="role">Captain, All-rounder</div>
+                    <div class="age">Age: 37</div>
+                    <div class="style">Style: RHB, Right-arm Medium-fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 2 -->
+            <div class="player-card">
+                <img src="https://wikibio.in/wp-content/uploads/2019/03/Chris-Gayle.jpg" alt="Chris Gayle" class="player-photo">
+                <h3>Chris Gayle</h3>
+                <div class="shirt-number">45</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 44</div>
+                    <div class="style">Style: LHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 3 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.3eFs5tdO-_JYLQ4gFvslzQHaEK?rs=1&pid=ImgDetMain" alt="Andre Russell" class="player-photo">
+                <h3>Andre Russell</h3>
+                <div class="shirt-number">12</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 36</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 4 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.1XYU4GaYaw_I4rFOoYi03gAAAA?rs=1&pid=ImgDetMain" alt="Sunil Narine" class="player-photo">
+                <h3>Sunil Narine</h3>
+                <div class="shirt-number">59</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: RHB, Right-arm Off-spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 5 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.QfHCZxHMGbgfgIYXvlTo2wAAAA?rs=1&pid=ImgDetMain" alt="Shai Hope" class="player-photo">
+                <h3>Shai Hope</h3>
+                <div class="shirt-number">23</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 6 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.RBVf9aKnkm7obehhCV7v0QHaJQ?w=160&h=200&rs=1&pid=ImgDetMain" alt="Dwayne Bravo" class="player-photo">
+                <h3>Dwayne Bravo</h3>
+                <div class="shirt-number">52</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 40</div>
+                    <div class="style">Style: RHB, Right-arm Medium-fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 7 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/321900/321943.png" alt="Alzarri Joseph" class="player-photo">
+                <h3>Alzarri Joseph</h3>
+                <div class="shirt-number">55</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 27</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 8 -->
+            <div class="player-card">
+                <img src="https://www.cricbuzz.com/a/img/v1/152x152/i1/c170785/evin-lewis.jpg" alt="Evin Lewis" class="player-photo">
+                <h3>Evin Lewis</h3>
+                <div class="shirt-number">9</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: LHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 9 -->
+            <div class="player-card">
+                <img src="https://media.gettyimages.com/id/1241799939/photo/cricket-wis-portraits.jpg?s=594x594&w=gi&k=20&c=UZB8u34tZ4Y40rFf93RsILDF1ubJwWp1vpVe-ockx7w=" alt="Keemo Paul" class="player-photo">
+                <h3>Keemo Paul</h3>
+                <div class="shirt-number">3</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 26</div>
+                    <div class="style">Style: RHB, Right-arm Medium-fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 10 -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/145100/145199.1.jpg" alt="Shannon Gabriel" class="player-photo">
+                <h3>Shannon Gabriel</h3>
+                <div class="shirt-number">3</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 36</div>
+                    <div class="style">Style: RHB, Right-arm Fast</div>
+                </div>
+            </div>
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.7NFRZjV5ey7btO3LNrGnRAHaEK?rs=1&pid=ImgDetMain" alt="Brian Lara" class="player-photo">
+                <h3>Brian Lara</h3>
+                <div class="shirt-number">10</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 54</div>
+                    <div class="style">Style: Left-hand Bat, Right-arm Leg Spin</div>
+                </div>
+            </div>
+            <div class="player-card">
+                <img src="https://e0.365dm.com/09/02/800x600/Curtly-Ambrose_1861788.jpg?20090206130603" alt="Curtly Ambrose" class="player-photo">
+                <h3>Curtly Ambrose</h3>
+                <div class="shirt-number">6</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 60</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+            
+    
+        </div>
+    </div>
+    <div class="player-cards-container team-section" id="team5">
+        <div class="team-header">
+            <h2>Team Pakistan - T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+    
+            <!-- Player 1 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.wq_FNXiELB7S3bZOSzfGWwHaHa?rs=1&pid=ImgDetMain" alt="Babar Azam" class="player-photo">
+                <h3>Babar Azam</h3>
+                <div class="shirt-number">56</div>
+                <div class="player-info">
+                    <div class="role">Captain, Batter</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 2 -->
+            <div class="player-card">
+                <img src="https://1.bp.blogspot.com/-dmR2RhqxwLw/YIh9iRCE4qI/AAAAAAAACp8/uScxXoLCsMsq63GnfsUKo2V5JPfli8argCNcBGAsYHQ/s1068/fullsizeoutput_69c.jpeg" alt="Shaheen Shah Afridi" class="player-photo">
+                <h3>Shaheen Shah Afridi</h3>
+                <div class="shirt-number">10</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 24</div>
+                    <div class="style">Style: Left-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 3 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.ISOw_YLZiads69okIQsV7gHaJ2?w=125&h=180&c=7&r=0&o=5&dpr=1.6&pid=1.7" alt="Fakhar Zaman" class="player-photo">
+                <h3>Fakhar Zaman</h3>
+                <div class="shirt-number">3</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 33</div>
+                    <div class="style">Style: LHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 4 -->
+            <div class="player-card">
+                <img src="https://a-sports.tv/wp-content/uploads/2023/03/Shadab-Khan-vows-to-lead-from-front.jpg" alt="Shadab Khan" class="player-photo">
+                <h3>Shadab Khan</h3>
+                <div class="shirt-number">20</div>
+                <div class="player-info">
+                    <div class="role">Vice-Captain, All-rounder</div>
+                    <div class="age">Age: 25</div>
+                    <div class="style">Style: RHB, Right-arm Leg-spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 5 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.JQ2EO05-kq--v4nzw5JUQQAAAA?rs=1&pid=ImgDetMain" alt="Mohammad Rizwan" class="player-photo">
+                <h3>Mohammad Rizwan</h3>
+                <div class="shirt-number">15</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batter</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 6 -->
+            <div class="player-card">
+                <img src="https://img.wegreenkw.com/sites/4/2023/03/Imam-ul-Haq.webp" alt="Imam-ul-Haq" class="player-photo">
+                <h3>Imam-ul-Haq</h3>
+                <div class="shirt-number">16</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 28</div>
+                    <div class="style">Style: LHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 7 -->
+            <div class="player-card">
+                <img src="https://pakistannews.com.pk/wp-content/uploads/2024/11/Haris-Rauf.jpg" alt="Haris Rauf" class="player-photo">
+                <h3>Haris Rauf</h3>
+                <div class="shirt-number">51</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 8 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.dtdA3cXb9hsFW82ksrb6HAAAAA?rs=1&pid=ImgDetMain" alt="Asif Ali" class="player-photo">
+                <h3>Asif Ali</h3>
+                <div class="shirt-number">7</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 9 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.0eNZWfENMx8L_KiGEyKVkgHaHC?rs=1&pid=ImgDetMain" alt="Mohammad Haris" class="player-photo">
+                <h3>Mohammad Haris</h3>
+                <div class="shirt-number">15</div>
+                <div class="player-info">
+                    <div class="role">Batter</div>
+                    <div class="age">Age: 22</div>
+                    <div class="style">Style: RHB</div>
+                </div>
+            </div>
+    
+            <!-- Player 10 -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/R.c0e2c774d374bccbd0406e8824696000?rik=cLTtaqHBqnyLHA&riu=http%3a%2f%2fwww.crictotal.com%2fplayer-images%2f4499.jpg&ehk=VpKtnn22qVTB6GzWS2zdjpgziP0Zz0WxOxfQDVUGMiA%3d&risl=&pid=ImgRaw&r=0" alt="Mohammad Nawaz" class="player-photo">
+                <h3>Mohammad Nawaz</h3>
+                <div class="shirt-number">19</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: LHB, Left-arm Spin</div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+    <div class="player-cards-container team-section" id="team6">
+        <div class="team-header">
+            <h2>Team South Africa - T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+            <!-- Player 1: Aiden Markram -->
+            <div class="player-card">
+                <img src="https://cf-cdn.newsbytesapp.com/sports/players/profile/aiden-markram.png" alt="Aiden Markram" class="player-photo">
+                <h3>Aiden Markram</h3>
+                <div class="shirt-number">17</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 2: Quinton de Kock -->
+            <div class="player-card">
+                <img src="https://isport.in/wp-content/uploads/Quinton-de-Kock.jpg" alt="Quinton de Kock" class="player-photo">
+                <h3>Quinton de Kock</h3>
+                <div class="shirt-number">34</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batsman</div>
+                    <div class="age">Age: 31</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 3: Kagiso Rabada -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.X3yZ_C2vgyPMGpmbLCnJaAAAAA?w=350&h=509&rs=1&pid=ImgDetMain" alt="Kagiso Rabada" class="player-photo">
+                <h3>Kagiso Rabada</h3>
+                <div class="shirt-number">3</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 4: Temba Bavuma -->
+            <div class="player-card">
+                <img src="https://www.sacricketmag.com/wp-content/uploads/2023/09/Temba-Bavuma-Proteas-2023-CWC-kit.jpg" alt="Temba Bavuma" class="player-photo">
+                <h3>Temba Bavuma</h3>
+                <div class="shirt-number">12</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 33</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 5: David Miller -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.T6BOFuWzT-Ka3Lw_t9WJ8AAAAA?rs=1&pid=ImgDetMain" alt="David Miller" class="player-photo">
+                <h3>David Miller</h3>
+                <div class="shirt-number">7</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 6: Anrich Nortje -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.isme1mEsCBwr32KcG6CybgHaEK?rs=1&pid=ImgDetMain" alt="Anrich Nortje" class="player-photo">
+                <h3>Anrich Nortje</h3>
+                <div class="shirt-number">39</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 7: Rassie van der Dussen -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_w_1200/lsci/db/PICTURES/CMS/317900/317946.jpg" alt="Rassie van der Dussen" class="player-photo">
+                <h3>Rassie van der Dussen</h3>
+                <div class="shirt-number">18</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 8: Lungi Ngidi -->
+            <div class="player-card">
+                <img src="https://www.cricbuzz.com/a/img/v1/152x152/i1/c170761/lungi-ngidi.jpg" alt="Lungi Ngidi" class="player-photo">
+                <h3>Lungi Ngidi</h3>
+                <div class="shirt-number">31</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 27</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 9: Dwaine Pretorius -->
+            <div class="player-card">
+                <img src="https://xmlns.cricketnext.com/cktnxt/scorecard/crk_player_images/players/128X128/42946.png" alt="Dwaine Pretorius" class="player-photo">
+                <h3>Dwaine Pretorius</h3>
+                <div class="shirt-number">17</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 10: Markram -->
+            <div class="player-card">
+                <img src="https://w0.peakpx.com/wallpaper/998/213/HD-wallpaper-ab-de-villiers-portrait-ab-de-villiers-south-african-cricketer-mr-360.jpg" alt="AB de Villiers" class="player-photo">
+                <h3>AB de Villiers</h3>
+                <div class="shirt-number">17</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 40</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+            
+    
+            <!-- Player 11: Keshav Maharaj -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_w_1200/lsci/db/PICTURES/CMS/321100/321182.jpg" alt="Keshav Maharaj" class="player-photo">
+                <h3>Keshav Maharaj</h3>
+                <div class="shirt-number">21</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Left-arm Orthodox</div>
+                </div>
+            </div>
+    
+            <!-- Player 12: Faf du Plessis -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.hcwfrUvIlXB_t6PZ6jN1rwHaEK?rs=1&pid=ImgDetMain" alt="Faf du Plessis" class="player-photo">
+                <h3>Faf du Plessis</h3>
+                <div class="shirt-number">18</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 40</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="player-cards-container team-section" id="team7">
+        <div class="team-header">
+            <h2>Team  Afghanistan - T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+            <!-- Player 1: Rashid Khan -->
+            <div class="player-card">
+                <img src="https://www.cricketwa.com/Images/PlayerImages/14565-Rashid-Khan.jpg" alt="Rashid Khan" class="player-photo">
+                <h3>Rashid Khan</h3>
+                <div class="shirt-number">27</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 25</div>
+                    <div class="style">Style: Right-arm Leg Spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 2: Mohammad Nabi -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.9wXB-Ao6fq2vzGkGDBQCoQHaHa?rs=1&pid=ImgDetMain" alt="Mohammad Nabi" class="player-photo">
+                <h3>Mohammad Nabi</h3>
+                <div class="shirt-number">11</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 39</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Off Spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 3: Hashmatullah Shahidi -->
+            <div class="player-card">
+                <img src="https://s1.stabroeknews.com/images/2021/03/Hashmatullah-Shahidi.jpg" alt="Hashmatullah Shahidi" class="player-photo">
+                <h3>Hashmatullah Shahidi</h3>
+                <div class="shirt-number">10</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 4: Najibullah Zadran -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.sqAKdW87u-NunjEplvwx4QHaEK?rs=1&pid=ImgDetMain" alt="Najibullah Zadran" class="player-photo">
+                <h3>Najibullah Zadran</h3>
+                <div class="shirt-number">9</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 31</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 5: Gulbadin Naib -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.aErlqwWThfE62n90vPCKAwAAAA?rs=1&pid=ImgDetMain" alt="Gulbadin Naib" class="player-photo">
+                <h3>Gulbadin Naib</h3>
+                <div class="shirt-number">15</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 6: Mujeeb Ur Rahman -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.D55q5Nqj3KdhbaE_k4aSqgAAAA?rs=1&pid=ImgDetMain" alt="Mujeeb Ur Rahman" class="player-photo">
+                <h3>Mujeeb Ur Rahman</h3>
+                <div class="shirt-number">3</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 23</div>
+                    <div class="style">Style: Right-arm Off Spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 7: Rahmat Shah -->
+            <div class="player-card">
+                <img src="https://img.cricketmazza.com/1695216020RahmatShah136@3x.png" alt="Rahmat Shah" class="player-photo">
+                <h3>Rahmat Shah</h3>
+                <div class="shirt-number">8</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 8: Karim Janat -->
+            <div class="player-card">
+                <img src="https://d1af7m13b2f34i.cloudfront.net/players/KarimJanat23-08-2022-09-47-08.png" alt="Karim Janat" class="player-photo">
+                <h3>Karim Janat</h3>
+                <div class="shirt-number">13</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 24</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 9: Naveen-ul-Haq -->
+            <div class="player-card">
+                <img src="https://cricketaddictor.com/wp-content/uploads/2023/09/Naveen-ul-haq-.jpg" alt="Naveen-ul-Haq" class="player-photo">
+                <h3>Naveen-ul-Haq</h3>
+                <div class="shirt-number">16</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 24</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 10: Sharafuddin Ashraf -->
+            <div class="player-card">
+                <img src="https://image.crictracker.com/wp-content/uploads/2021/11/Sharafuddin-Ashraf.jpg" alt="Sharafuddin Ashraf" class="player-photo">
+                <h3>Sharafuddin Ashraf</h3>
+                <div class="shirt-number">17</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: Left-hand Bat, Left-arm Orthodox</div>
+                </div>
+            </div>
+    
+            <!-- Player 11: Samiullah Shinwari -->
+            <div class="player-card">
+                <img src="https://s3.amazonaws.com/batsman/Samiullah%20Shinwari_99440525-f011-46d2-9af7-b0ff38387692.JPG" alt="Samiullah Shinwari" class="player-photo">
+                <h3>Samiullah Shinwari</h3>
+                <div class="shirt-number">14</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 12: Farid Ahmad Malik -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP._7kSSunohmRk9a4TTvTWigAAAA?rs=1&pid=ImgDetMain" alt="Farid Ahmad Malik" class="player-photo">
+                <h3>Farid Ahmad Malik</h3>
+                <div class="shirt-number">23</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 22</div>
+                    <div class="style">Style: Left-arm Fast</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="player-cards-container team-section" id="team8">
+        <div class="team-header">
+            <h2>Team New Zealand T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+            <!-- Player 1: Kane Williamson -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.91cfIHDgcgjr7zA94OMT6gHaHe?rs=1&pid=ImgDetMain" alt="Kane Williamson" class="player-photo">
+                <h3>Kane Williamson</h3>
+                <div class="shirt-number">22</div>
+                <div class="player-info">
+                    <div class="role">Captain, Batsman</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 2: Martin Guptill -->
+            <div class="player-card">
+                <img src="https://admin.thecricketer.com/weblab/sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/martnguptillheadshot.jpg" alt="Martin Guptill" class="player-photo">
+                <h3>Martin Guptill</h3>
+                <div class="shirt-number">11</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 37</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 3: Trent Boult -->
+            <div class="player-card">
+                <img src="https://admin.thecricketer.com/weblab/Sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/trentboultheadshot-min.jpg" alt="Trent Boult" class="player-photo">
+                <h3>Trent Boult</h3>
+                <div class="shirt-number">18</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Left-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 4: Ross Taylor -->
+            <div class="player-card">
+                <img src="https://admin.thecricketer.com/weblab/Sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/rosstaylrheadshot-min.jpg" alt="Ross Taylor" class="player-photo">
+                <h3>Ross Taylor</h3>
+                <div class="shirt-number">3</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 40</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 5: Mitchell Santner -->
+            <div class="player-card">
+                <img src="https://admin.thecricketer.com/weblab/Sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/mitchsantnerheadshot-min.jpg" alt="Mitchell Santner" class="player-photo">
+                <h3>Mitchell Santner</h3>
+                <div class="shirt-number">74</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: Left-hand Bat, Left-arm Orthodox</div>
+                </div>
+            </div>
+    
+            <!-- Player 6: Lockie Ferguson -->
+            <div class="player-card">
+                <img src="https://proteammaker.com/wp-content/uploads/2020/03/Lockie-Ferguson.jpg" alt="Lockie Ferguson" class="player-photo">
+                <h3>Lockie Ferguson</h3>
+                <div class="shirt-number">28</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 7: Devon Conway -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/318500/318588.1.jpg" alt="Devon Conway" class="player-photo">
+                <h3>Devon Conway</h3>
+                <div class="shirt-number">22</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 8: Kyle Jamieson -->
+            <div class="player-card">
+                <img src="https://isport.in/wp-content/uploads/Kyle-Jamieson.jpg" alt="Kyle Jamieson" class="player-photo">
+                <h3>Kyle Jamieson</h3>
+                <div class="shirt-number">1</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 9: Jimmy Neesham -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.7aYmk9jfPx3Asuq4xI-gnQAAAA?rs=1&pid=ImgDetMain" alt="James Neesham" class="player-photo">
+                <h3>James Neesham</h3>
+                <div class="shirt-number">31</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Left-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 10: Tim Southee -->
+            <div class="player-card">
+                <img src="https://admin.thecricketer.com/weblab/sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/southeeheadshot-min.jpg" alt="Tim Southee" class="player-photo">
+                <h3>Tim Southee</h3>
+                <div class="shirt-number">7</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 35</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 11: Finn Allen -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321200/321220.png" alt="Finn Allen" class="player-photo">
+                <h3>Finn Allen</h3>
+                <div class="shirt-number">3</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 24</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 12: Tom Latham -->
+            <div class="player-card">
+                <img src="https://i.pinimg.com/originals/67/18/18/671818145c72964859780332b7a37bb5.png" alt="Tom Latham" class="player-photo">
+                <h3>Tom Latham</h3>
+                <div class="shirt-number">22</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batsman</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="player-cards-container team-section" id="team9">
+        <div class="team-header">
+            <h2>Team Srilanka - T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+            <!-- Player 1: Dasun Shanaka -->
+            <div class="player-card">
+                <img src="https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2019/04/23/Pictures/sri-lanka-t20-headshots-session_997f0788-658e-11e9-9706-c5428a3382f6.jpg" alt="Dasun Shanaka" class="player-photo">
+                <h3>Dasun Shanaka</h3>
+                <div class="shirt-number">21</div>
+                <div class="player-info">
+                    <div class="role">Captain, All-rounder</div>
+                    <div class="age">Age: 32</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 2: Kusal Perera -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/R.78545b4c62fa56f92d1ce4b4980d9b03?rik=AGliUf5CBISraQ&riu=http%3a%2f%2fwww.sportzvision.com%2fcricket%2fimages%2fkusal-perera.jpg&ehk=XbLviYDhAf%2bcefR7szrJ9Wpaeqdd1XUeiff5wadQ1po%3d&risl=&pid=ImgRaw&r=0" alt="Kusal Perera" class="player-photo">
+                <h3>Kusal Perera</h3>
+                <div class="shirt-number">9</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 3: Angelo Mathews -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.cnM-ZqSbAtlYsCCjZlSTEgHaH2?rs=1&pid=ImgDetMain" alt="Angelo Mathews" class="player-photo">
+                <h3>Angelo Mathews</h3>
+                <div class="shirt-number">6</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 37</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 4: Kusal Mendis -->
+            <div class="player-card">
+                <img src="https://adaderanaenglish.s3.amazonaws.com/1593921224-kusal-mendis-arrested.jpg" alt="Kusal Mendis" class="player-photo">
+                <h3>Kusal Mendis</h3>
+                <div class="shirt-number">18</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 5: Dinesh Chandimal -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.9tqXTwiWWlh5xQOKCKFz6AAAAA?rs=1&pid=ImgDetMain" alt="Dinesh Chandimal" class="player-photo">
+                <h3>Dinesh Chandimal</h3>
+                <div class="shirt-number">14</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 6: Lasith Malinga -->
+            <div class="player-card">
+                <img src="https://wallpapercave.com/wp/wp7152789.jpg" alt="Lasith Malinga" class="player-photo">
+                <h3>Lasith Malinga</h3>
+                <div class="shirt-number">99</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 41</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 7: Wanindu Hasaranga -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.6gJT77n1nQlKEP6e2aIVIQHaEo?rs=1&pid=ImgDetMain" alt="Wanindu Hasaranga" class="player-photo">
+                <h3>Wanindu Hasaranga</h3>
+                <div class="shirt-number">45</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 27</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Leg Spin</div>
+                </div>
+            </div>
+    
+            <!-- Player 8: Praveen Jayawickrama -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.5SJ_t4FC53O0L1gpE8fOcgHaFY?rs=1&pid=ImgDetMain" alt="Praveen Jayawickrama" class="player-photo">
+                <h3>Praveen Jayawickrama</h3>
+                <div class="shirt-number">70</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 25</div>
+                    <div class="style">Style: Left-arm Orthodox</div>
+                </div>
+            </div>
+    
+            <!-- Player 9: Charith Asalanka -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.oDYpZVqnP0Mx8acjV1SJzwAAAA?rs=1&pid=ImgDetMain" alt="Charith Asalanka" class="player-photo">
+                <h3>Charith Asalanka</h3>
+                <div class="shirt-number">23</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 27</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 10: Avishka Fernando -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_w_1200/lsci/db/PICTURES/CMS/322900/322951.png" alt="Avishka Fernando" class="player-photo">
+                <h3>Avishka Fernando</h3>
+                <div class="shirt-number">5</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 25</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 11: Niroshan Dickwella -->
+            <div class="player-card">
+                <img src="https://img.wegreenkw.com/sites/4/2023/07/Niroshan-Dickwella.webp" alt="Niroshan Dickwella" class="player-photo">
+                <h3>Niroshan Dickwella</h3>
+                <div class="shirt-number">18</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batsman</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 12: Lahiru Kumara -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_640,q_50/lsci/db/PICTURES/CMS/322900/322942.png" alt="Lahiru Kumara" class="player-photo">
+                <h3>Lahiru Kumara</h3>
+                <div class="shirt-number">21</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 27</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="player-cards-container team-section" id="team10">
+        <div class="team-header">
+            <h2>Team Bangladesh - T20 Players (2024)</h2>
+            <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+        </div>
+        <div class="player-cards">
+            <!-- Player 1: Shakib Al Hasan -->
+            <div class="player-card">
+                <img src="https://1.bp.blogspot.com/-NrXBOgPhQO0/UlubRdlugdI/AAAAAAAAADE/W8zrgXk1U8U/s1600/shakib-al-hasan-family-profile.jpg" alt="Shakib Al Hasan" class="player-photo">
+                <h3>Shakib Al Hasan</h3>
+                <div class="shirt-number">75</div>
+                <div class="player-info">
+                    <div class="role">Captain, All-rounder</div>
+                    <div class="age">Age: 37</div>
+                    <div class="style">Style: Left-hand Bat, Left-arm Orthodox</div>
+                </div>
+            </div>
+    
+            <!-- Player 2: Tamim Iqbal -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/R.b1d3eaacf254e20b9257ddf25159a470?rik=QoOR9T5DrUUXhA&riu=http%3a%2f%2fwww.fancyodds.com%2fwp-content%2fuploads%2f2020%2f07%2ftamim-iqbal.jpeg&ehk=FhwXeaSWEEsOZs2bMkfEoPSMCJiS52NksNjjytA5QSU%3d&risl=&pid=ImgRaw&r=0" alt="Tamim Iqbal" class="player-photo">
+                <h3>Tamim Iqbal</h3>
+                <div class="shirt-number">28</div>
+                <div class="player-info">
+                    <div class="role">Batsman</div>
+                    <div class="age">Age: 34</div>
+                    <div class="style">Style: Left-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 3: Mushfiqur Rahim -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_640,q_50/lsci/db/PICTURES/CMS/316500/316578.png" alt="Mushfiqur Rahim" class="player-photo">
+                <h3>Mushfiqur Rahim</h3>
+                <div class="shirt-number">15</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batsman</div>
+                    <div class="age">Age: 37</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 4: Litton Das -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.wSCD210fTAv5LCrO3O2Y1AAAAA?rs=1&pid=ImgDetMain" alt="Litton Das" class="player-photo">
+                <h3>Litton Das</h3>
+                <div class="shirt-number">7</div>
+                <div class="player-info">
+                    <div class="role">Batsman, Wicketkeeper</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+    
+            <!-- Player 5: Mahmudullah Riyad -->
+            <div class="player-card">
+                <img src="https://indianhotdeal.com/wp-content/uploads/2020/03/images-1.jpeg" alt="Mahmudullah Riyad" class="player-photo">
+                <h3>Mahmudullah Riyad</h3>
+                <div class="shirt-number">5</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 38</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Off Break</div>
+                </div>
+            </div>
+    
+            <!-- Player 6: Mustafizur Rahman -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.qYGmRTSo15HNgV64p4SQfwAAAA?rs=1&pid=ImgDetMain" alt="Mustafizur Rahman" class="player-photo">
+                <h3>Mustafizur Rahman</h3>
+                <div class="shirt-number">45</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 28</div>
+                    <div class="style">Style: Left-arm Fast Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 7: Soumya Sarkar -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.2R3CfWTMQrqL2LRpPnnvWAHaEK?rs=1&pid=ImgDetMain" alt="Soumya Sarkar" class="player-photo">
+                <h3>Soumya Sarkar</h3>
+                <div class="shirt-number">1</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 31</div>
+                    <div class="style">Style: Left-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 8: Shoriful Islam -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.iqGWEpjx0BFHP5Y-5EXfDwHaFY?rs=1&pid=ImgDetMain" alt="Shoriful Islam" class="player-photo">
+                <h3>Shoriful Islam</h3>
+                <div class="shirt-number">23</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 22</div>
+                    <div class="style">Style: Left-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 9: Taskin Ahmed -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/OIP.OdTm5oQV4bb8mLkUMSg2yAAAAA?rs=1&pid=ImgDetMain" alt="Taskin Ahmed" class="player-photo">
+                <h3>Taskin Ahmed</h3>
+                <div class="shirt-number">10</div>
+                <div class="player-info">
+                    <div class="role">Bowler</div>
+                    <div class="age">Age: 29</div>
+                    <div class="style">Style: Right-arm Fast</div>
+                </div>
+            </div>
+    
+            <!-- Player 10: Mohammad Saifuddin -->
+            <div class="player-card">
+                <img src="https://th.bing.com/th/id/R.e6032d6af3581a3401c961b3354dda17?rik=GVhKVZDe6%2bbu7A&riu=http%3a%2f%2fwww.cricbuzz.com%2fa%2fimg%2fv1%2f152x152%2fi1%2fc170907%2fmohammad-saifuddin.jpg&ehk=BjN3WVHjHgXpd8FXR3AaGhI3foSffxNVOFBowWvUjeg%3d&risl=&pid=ImgRaw&r=0" alt="Mohammad Saifuddin" class="player-photo">
+                <h3>Mohammad Saifuddin</h3>
+                <div class="shirt-number">75</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 27</div>
+                    <div class="style">Style: Right-hand Bat, Right-arm Medium</div>
+                </div>
+            </div>
+    
+            <!-- Player 11: Afif Hossain -->
+            <div class="player-card">
+                <img src="https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/323100/323159.png" alt="Afif Hossain" class="player-photo">
+                <h3>Afif Hossain</h3>
+                <div class="shirt-number">45</div>
+                <div class="player-info">
+                    <div class="role">All-rounder</div>
+                    <div class="age">Age: 23</div>
+                    <div class="style">Style: Left-hand Bat, Right-arm Off Break</div>
+                </div>
+            </div>
+    
+            <!-- Player 12: Nurul Hasan -->
+            <div class="player-card">
+                <img src="https://www.sportzcraazy.com/wp-content/uploads/2019/10/Nurul-Hasan.jpg" alt="Nurul Hasan" class="player-photo">
+                <h3>Nurul Hasan</h3>
+                <div class="shirt-number">27</div>
+                <div class="player-info">
+                    <div class="role">Wicketkeeper, Batsman</div>
+                    <div class="age">Age: 30</div>
+                    <div class="style">Style: Right-hand Bat</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

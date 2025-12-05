@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.9), rgba(0, 95, 115, 0.9)); /* Navy Blue to Teal Gradient */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Glass Effect Container */
+.match-centre-container {
+    max-width: 1000px;
+    background: rgba(0, 51, 102, 0.3); /* Navy Blue Tint */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Back Link */
+.back-link {
+    text-decoration: none;
+    font-size: 16px;
+    color: #00aaff;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* Match Header */
+.match-details-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.match-details-header h2 {
+    margin: 0;
+    color: #ffffff;
+}
+
+/* Scoreboard */
+.match-scoreboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.teams-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team {
+    text-align: center;
+    margin: 0 20px;
+}
+
+.team img {
+    width: 60px;
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.vs {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffcc00;
+    margin: 0 20px;
+}
+
+/* Match Time */
+.match-time {
+    text-align: center;
+    color: #cccccc;
+    margin-bottom: 20px;
+}
+
+/* Toggle Buttons */
+.team-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.pill-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pill-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.pill-button.active {
+    background-color: #ffcc00;
+    color: #003366;
+}
+
+/* Squad Section */
+.squad-container {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.squad {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.squad-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Player Cards with Glass Effect */
+.player-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 150px;
+    transition: transform 0.3s ease;
+    margin: 10px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.player-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffcc00;
+}
+
+.player-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.player-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.player-role {
+    color: #ddd;
+}
+
+/* Hover Effect */
+.player-card:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hiding Teams */
+.hidden {
+    display: none;
+}

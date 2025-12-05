@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ Page</title>
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background-color: #2ea5f5eb;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+        /* Navbar Styles */
+        nav {
+            height: 80px;
+            width: 100%;
+            background: rgba(28, 57, 120, 0.8); /* Darker transparent blue background */
+            backdrop-filter: blur(10px); /* Glass effect */
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Increased shadow for better visibility */
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 20px;
+        }
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    margin: 0;
+    flex-grow: 1;
+    padding-left: 50px; /* Increased spacing */
+    padding-top: 30px;
+}
+
+.nav-menu li {
+    margin: 0 35px; /* Increased spacing between menu items */
+    position: relative;
+}
+
+.nav-menu li:not(:first-child):not(:nth-child(1)):not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -30px;  /* Adjust spacing */
+    top: 30%;
+    transform: translateY(-50%);
+    height: 60px;  /* Adjust height as needed */
+    width: 2px;  /* Thickness of the line */
+    background-color: white; /* Change color as needed */
+}
+
+
+.nav-menu a {
+    text-decoration: none;
+    font-size: 1.5em; /* Increased text size */
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #FFD700;
+}
+
+.nav-logo {
+        height: 60px; 
+        width: auto;  
+        margin-left: 20px;
+        margin-top: -15px;
+        }
+
+
+/* Dropdown Menu Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: hwb(121 12% 19% / 0.066); /* Semi-transparent white background */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    padding: 10px;
+    z-index: 1;
+    width: 200px;
+    top: 100%;
+    left: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Slight border */
+    border-radius: 25px;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.dropdown-menu li::after {
+    content: none;
+}
+
+.dropdown-menu li a {
+    color: white;
+    font-size: 1em;
+}
+
+.dropdown-menu li a:hover {
+    color: #FFD700;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      box-sizing: border-box;
+      background: linear-gradient(to bottom right, #f0f8ff, #dbe2ef);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      flex: 1;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #1b6ca8;
+      font-family: 'Georgia', serif;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 750px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-item h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #4a4e69;
+    }
+
+    .faq-item p {
+      font-size: 1.1em;
+      color: #333333;
+    }
+
+    .footer {
+      background-color: #18191a;
+      color: #a6a6a6;
+      font-family: 'Roboto', Arial, sans-serif;
+      padding: 30px 20px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-around;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 150px;
+      margin: 10px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2em;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      font-size: 0.9em;
+      margin-bottom: 8px;
+    }
+
+    .footer-column ul li a {
+      color: #a6a6a6;
+      text-decoration: none;
+    }
+
+    .footer-column ul li a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul class="nav-menu">
+      <li>
+          <a href="index.html">
+          <img src="logo.jpg" alt="Logo" class='nav-logo'>
+          </a>
+      </li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown">
+        <a href="#">Support</a>
+        <ul class="dropdown-menu">
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </li>
+      <li><a href="registration.php">Account</a></li>
+    </ul>
+  </nav>
+
+  <br><br><br>
+
+  <div class="faq-container">
+    <h1>FREQUENTLY ASKED QUESTIONS</h1>
+    <div class="faq-item">
+      <h2>Does CEMS provides news about cricket formats?</h2>
+      <p>Yes, CEMS Website provides news related to all formats.</p>
+    </div>
+    <div class="faq-item">
+      <h2>What are the future plans for the CEMS Website?</h2>
+      <p>To increase auidence by providing latest news of cricket matches instantly.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Follow Us</h3>
+        <ul>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Youtube</a></li>
+          <li><a href="index.html">CEMS</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

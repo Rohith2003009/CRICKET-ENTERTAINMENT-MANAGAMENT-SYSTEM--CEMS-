@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eden Gardens Cricket Ground</title>
+    <style>
+        /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Top Navigation Styles */
+.top-nav {
+    background-color: #2b2d42;
+    padding: 15px;
+    text-align: center;
+    color: whitesmoke;
+}
+
+/* Left Navigation Styles */
+.left-nav {
+    position: absolute;
+    top: 60px; /* Below top-nav */
+    left: 0;
+    background-color: #2b2d42;
+    height: 200%;
+    width: 130px;
+    padding-top: 30px;
+    display: none; /* Hide by default */
+    transition: all 0.3s; /* Smooth transition */
+}
+
+.left-nav.active {
+    display: block; /* Show when active */
+}
+
+.left-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.left-nav ul li {
+    margin: 20px 0;
+    text-align: center;
+    position: relative; /* Position relative for dropdown */
+}
+
+.left-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.left-nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #2b2d42;
+    min-width: 150px;
+    z-index: 1;
+}
+
+.dropdown li {
+    margin: 0;
+}
+
+.left-nav ul li:hover .dropdown {
+    display: block; /* Show dropdown on hover */
+}
+
+/* Main Section Styles */
+main {
+    margin-left: 150px; /* Space for left nav */
+    padding: 20px;
+    background-color: transparent;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Gallery Styles */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Adjusted to 2 columns */
+    gap: 10px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio */
+    border: 2px solid #ccc;
+}
+
+.gallery-grid img:hover {
+    border-color: #2b2d42;
+}
+
+/* Label Styles */
+.gallery-grid label {
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    font-weight: bold; /* Make labels bold */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #2b2d42;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Style for Inline Images */
+.inline-image {
+    width: 200px;
+    height: auto;
+    float: right;
+    margin-left: 20px;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 6px 0;
+    transition: all 0.3s;
+}
+
+/* Map Styles */
+.map-container {
+    width: 100%;
+    height: 400px; /* Height of the map */
+    margin-top: 20px; /* Space above the map */
+}
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%; /* Width of the image */
+    max-width: 700px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <h1>Welcome to Eden Garden's Cricket Ground</h1>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Left Navigation -->
+    <div class="left-nav" id="left-nav">
+        <ul>
+            <li><a href="#history">History</a></li>
+            
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+   <section id="About">
+    <h2>Eden Gardens</h2>
+    <p>
+        <img src="eden.jpeg" alt="Lord's Cricket Ground History" class="inline-image">
+       
+Eden Gardens is an international cricket stadium in Kolkata, India. Established in 1864, it is the oldest and second-largest cricket stadium in India and third-largest in the world. The stadium currently has a capacity of 68,000. It is owned and operated by Cricket Association of Bengal (CAB) and is the home ground of the Kolkata Knight Riders. It houses the headquarters of Cricket Association of Bengal.
+    </p>
+    <p>
+        
+Eden Gardens is often referred to as the home of Indian cricket and has also been described as "cricket's answer to the Colosseum" and called the "Mecca of Indian cricket," due to it being the first purpose-built ground for the sport. Eden Gardens has hosted matches in major international competitions, including the World Cup, World Twenty20, and Asia Cup. In 1987, Eden Gardens became the second stadium to host a World Cup final. The 2016 ICC World Twenty20 final was held at the stadium, with the West Indies beating England in a closely fought encounter. Eden Gardens witnessed a record crowd of 110,564 in the 1996 India vs. Sri Lanka Cricket World Cup Semi-Final
+    </p>
+    
+</section>
+
+<section id="History">
+    <h2>History</h2>
+    <p>
+        <img src="eden history.png" alt="Lord's Cricket Ground History" class="inline-image">
+       
+        The stadium was established in 1864. The origins of its name are uncertain. According to some, the stadium is named after the Eden Gardens park where it is located, itself named after the Eden sisters, Emily and Fanny, of Lord Auckland, the Governor-General of India (1836–1842).[11] Initially named the 'Auckland Circus Gardens',[12][13] the park was renamed to the 'Eden Gardens' in 1841.[14]</p>
+    <p>It is the home ground for Middlesex County Cricket Club and is also the headquarters for the England and Wales Cricket Board (ECB) and the European Cricket Council (ECC).</p>
+<P>However, according to popular culture, Babu Rajchandra Das, the zamindar (landlord) of Janbazar, Kolkata and husband of Rani Rashmoni, gifted one of his biggest gardens, Mar Bagan, besides the river Hooghly, to Lord Auckland and his sister Emily Eden in gratitude for their help in saving his third daughter from a fatal disease. The garden was then renamed to the Eden Gardens.</P>
+<P>The cricket grounds were built between Babughat and Fort William. The stadium is located in the B. B. D. Bagh area of Kolkata, near the State Secretariat and across from the Calcutta High Court.</P>
+<P>The first Test match at Eden Gardens was held in 1934 between England and India. Its first One Day International took place in 1987 between India and Pakistan, and its first T20 international match occurred in 2011 between India and England. The 1993 Hero Cup semi-final featuring India and South Africa was the first day/night match at the venue</P>
+<P>The stadium also hosted matches during the inaugural edition of the Nehru Cup in 1982, and it hosted the India versus Uruguay football match in the 1984 Nehru Cup.</P>
+<P>1980 Stampede: On 16 August 1980, a stampede and riot inside Eden Gardens during a Mohun Bagan-East Bengal Calcutta Football League (CFL) match led to the tragic deaths of 16 people.</P>
+<P>Stadium: Eden Gardens serves as the headquarters of the Cricket Association of Bengal and is the home ground for the Bengal cricket team and the Kolkata Knight Riders (an IPL franchise). The Club House is named after the former Chief Minister of West Bengal, Dr. B. C. Roy.</P>
+<P>1987 Renovation: In preparation for the 1987 World Cup, the stadium's capacity was expanded from 40,000 to 100,000. This expansion included the construction of 42 columns to support large roofs and multi-tiered covered stands, although not all seats were covered, and some sections still lacked individual seating. Despite this, match day attendance of more than 100,000 spectators was recorded on at least six occasions until the early 2000s</P>
+<P>2011 Renovation: Eden Gardens underwent another renovation ahead of the 2011 Cricket World Cup to meet the standards set by the ICC. The Cricket Association of Bengal hired a consortium of architects to renovate the stadium over two years. The project included a new clubhouse and player facilities, upgrades to the exterior walls, new roofing, improved amenities, and general infrastructure upgrades. The renovations also reduced the seating capacity from around 94,000 to approximately 68,000. Due to incomplete renovations, the ICC withdrew the India vs. England match from the venue, which was then played in Bengaluru. However, Eden Gardens hosted the remaining three scheduled World Cup matches in March 2011. The match between Kenya and Zimbabwe saw the lowest ticket-purchasing crowd in the stadium's history, with just 15 tickets sold.</P>
+<P>Stands: Several stands at Eden Gardens have been named after prominent cricketers and soldiers. On 22 January 2017, stands were named after Indian cricketers Sourav Ganguly and Pankaj Roy, as well as cricket administrators BN Dutt and Jagmohan Dalmiya. On 27 April 2017, four stands were named after Indian soldiers: Colonel Neelakantan Jayachandran Nair, Havildar Hangpan Dada, Lieutenant Colonel Dhan Singh Thapa, and Subedar Joginder Singh Sahnan, with the latter two being Param Vir Chakra recipients and the former two Ashok Chakra recipients.</P>
+</section>
+
+
+        <!-- About Lord's -->
+        <section id="about">
+            <h2>About Eden Gardens Stadium</h2>
+            <p>
+                Eden Gardens is one of the most iconic cricket stadiums in the world, known for its rich history, electrifying atmosphere, and massive seating capacity. Established in 1864, it is the oldest cricket stadium in India and one of the largest in the world, with a current seating capacity of 68,000. The stadium has witnessed numerous historic matches and remains a cornerstone of Indian cricket.
+            </p>
+            <p>
+                Often referred to as the "Mecca of Indian cricket" and "cricket's answer to the Colosseum," Eden Gardens has been the stage for multiple international competitions, including the Cricket World Cup, ICC World Twenty20, and the Asia Cup. The stadium was the second in the world to host a World Cup final, with the 1987 final held here.
+            </p>
+            <p>
+                Eden Gardens is the home ground for the Bengal cricket team and the Kolkata Knight Riders, a franchise in the Indian Premier League (IPL). It is also the headquarters of the Cricket Association of Bengal (CAB). The stadium has seen record-breaking crowds, including a historic turnout of over 110,000 spectators during the 1996 Cricket World Cup semi-final between India and Sri Lanka.
+            </p>
+            <p>
+                The stadium has undergone multiple renovations, most notably in 1987 and 2011, to modernize its facilities and meet international standards. The 1987 renovation expanded its capacity to 100,000, while the 2011 renovation reduced the capacity to 68,000 to provide better infrastructure and comfort for spectators.
+            </p>
+            <p>
+                Besides cricket, Eden Gardens has also hosted football matches and other events. In 1984, it hosted the India versus Uruguay football match as part of the Nehru Cup. The stadium also has a tragic history, with a stampede during a football match in 1980 leading to the deaths of 16 people.
+            </p>
+            <p>
+                The stands at Eden Gardens are named after legendary cricketers like Sourav Ganguly and Pankaj Roy, as well as military heroes who have received India's highest wartime and peacetime honors. The Club House is named after Dr. B. C. Roy, a former Chief Minister of West Bengal.
+            </p>
+        </section>
+        
+
+        <section id="location-significance">
+            <h1>Location and Significance</h1>
+            <p>
+                <strong>Location:</strong> Eden Gardens is located in Kolkata, West Bengal, India, between Babughat and Fort William. It is situated in the B. B. D. Bagh area of the city, near the State Secretariat and across from the Calcutta High Court.<br>
+                <strong>Owner:</strong> The stadium is owned and operated by the Cricket Association of Bengal (CAB), which plays a crucial role in promoting cricket in the region.
+            </p>
+            <!-- Google Map Embed -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.913430664074!2d88.3489156752578!3d22.56455392881221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0277317da8b95d%3A0x6636a905cc352d1d!2sEden%20Gardens!5e0!3m2!1sen!2sin!4v1697801963492!5m2!1sen!2sin" 
+                    width="90%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+        
+
+        <section id="facilities">
+            <h2>Facilities at Eden Gardens</h2>
+            <p>
+                Eden Gardens is equipped with world-class facilities that cater to players, officials, and spectators, making it one of the premier cricket stadiums in the world. Below are some of the key facilities offered:
+            </p>
+            <ul>
+                <li><strong>Seating Capacity:</strong> The stadium has a seating capacity of 68,000, providing a fantastic view of the action for a large number of spectators.</li>
+                <li><strong>Clubhouse:</strong> The Club House is named after Dr. B. C. Roy, former Chief Minister of West Bengal, and includes lounges, meeting rooms, and other amenities for players and officials.</li>
+                <li><strong>Player Facilities:</strong> The stadium offers modern dressing rooms, practice nets, and indoor training areas equipped with state-of-the-art facilities.</li>
+                <li><strong>Media and Press Facilities:</strong> Eden Gardens has a dedicated media center with press boxes, high-speed internet, and facilities for broadcasters to cover matches.</li>
+                <li><strong>Corporate Boxes:</strong> Luxury corporate boxes are available for VIP guests and sponsors, offering premium seating, dining, and private viewing areas.</li>
+                <li><strong>Floodlights:</strong> The stadium is equipped with high-quality floodlights that allow for day/night matches, including international games and IPL fixtures.</li>
+                <li><strong>Advanced Drainage System:</strong> The stadium has an advanced drainage system that allows the outfield to recover quickly after rain, minimizing match delays.</li>
+                <li><strong>Food and Beverage Stalls:</strong> Numerous food courts and beverage stalls are spread across the stadium, providing refreshments for the audience.</li>
+                <li><strong>Parking Facilities:</strong> Ample parking is available for vehicles around the stadium to accommodate the large number of fans on match days.</li>
+                <li><strong>Public Restrooms:</strong> Clean and well-maintained public restrooms are available throughout the stadium for the convenience of spectators.</li>
+            </ul>
+        </section>
+        
+
+        <!-- Nursery Ground Section -->
+       
+<section id="Nursery-ground">
+    <h2>Practice Ground at Eden Gardens</h2>
+    <p>
+        <img src="nursery.jpeg" alt="Eden Gardens Practice Ground" class="inline-image">
+        Eden Gardens is equipped with a well-maintained practice ground located adjacent to the main stadium. This ground is primarily used for training and practice sessions by both domestic and international teams. It features grass nets and modern facilities, making it an ideal venue for players to prepare for matches.
+    </p>
+    <p>
+        The practice ground is also utilized by the Bengal cricket team and the Kolkata Knight Riders (KKR) during the Indian Premier League (IPL) season. The ground has world-class nets, both open and enclosed, that allow players to hone their skills in a professional environment.
+    </p>
+    <p>
+        The facility is equipped with floodlights to accommodate evening practice sessions, especially before day/night matches. Eden Gardens' practice ground ensures that players have access to high-quality training facilities, contributing to the venue's reputation as one of the premier cricketing locations globally.
+    </p>
+    <p>
+        In addition to its use for professional teams, the practice ground at Eden Gardens is occasionally opened for cricket camps and coaching clinics, helping to nurture young cricketing talent in the region. These camps offer aspiring cricketers the chance to train at one of the most prestigious cricketing venues in the world.
+    </p>
+    <p>
+        Plans are in place for future upgrades to the practice facilities, including enhancements to the nets and training equipment, ensuring that the practice ground continues to serve as a top-tier training space for cricketers of all levels.
+    </p>
+</section>
+
+        
+
+<section id="tours">
+    <h2>Tours of Eden Gardens</h2>
+    <p>
+        Eden Gardens offers guided tours that immerse visitors in the rich history and significance of this iconic cricket stadium. Tours typically include:
+    </p>
+    <ul>
+        <li>Access to the historic pavilion and player areas</li>
+        <li>A visit to the Cricket Association of Bengal (CAB) Museum, showcasing memorabilia and exhibits</li>
+        <li>A stroll across the lush outfield and onto the pitch</li>
+        <li>Insights into cricketing legends, unforgettable matches, and memorable moments that have taken place here</li>
+    </ul>
+    <p>
+        All tours are led by knowledgeable guides who share fascinating stories and facts about Eden Gardens, from its inception to its role in major cricket tournaments. 
+        Book your tour in advance to ensure availability and enjoy a unique experience at one of the world's most celebrated cricket venues!
+    </p>
+</section>
+
+
+        <!-- Gallery Section -->
+ <!-- Gallery Section -->
+<!-- Gallery Section -->
+<section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+        <label for="">Eden Gardens Stadium View</label>
+        <p>A breathtaking view of Eden Gardens, showcasing its vast seating and vibrant atmosphere during matches.</p>
+        <img src="eden.1.jpg" alt="Eden Gardens Stadium view" onclick="openModal(this.src)">
+        <img src="eden.2.jpg" alt="Eden Gardens Stadium view" onclick="openModal(this.src)">
+        
+        <label for="">The Pavilion at Eden Gardens</label>
+        <p>The Pavilion at Eden Gardens, an iconic structure that holds a rich cricketing history.</p>
+        <img src="edenpavi.1.jpg" alt="The Pavilion" onclick="openModal(this.src)">
+        <img src="edencows.2.jpg" alt="The Pavilion" onclick="openModal(this.src)">
+    </div>
+</section>
+
+
+<!-- Modal for Enlarged Image -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <div id="caption"></div>
+</div>
+
+<section id="lords-ground-video">
+    <h2>Visual Eden Gardens Ground</h2>
+    <p>Experience the magnificent Eden gradensCricket Ground in motion. Watch the video below:</p>
+    
+    <!-- Video Section -->
+    <video autoplay muted loop id="bgVideo" src="edengardens.mp4" width="800" height="800">
+        Your browser does not support the video tag.
+    </video>
+    <div style="text-align: left; margin-top: 15px;">
+        <a href="Stadium.html" style="color: #2b2d42; font-size: 25px; font-weight: bold; text-decoration: none; padding: 8px 12px; display: inline-block;">
+            Return Back
+        </a>
+    </div>
+</section>
+
+
+
+
+
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>Contact us at: info@lordscricket.com</p>
+        <p>&copy; 2024 Lord's Cricket Ground. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const leftNav = document.getElementById('left-nav');
+            leftNav.classList.toggle('active');
+        }
+        
+    function openModal(src) {
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+        modal.style.display = "block"; // Show the modal
+        modalImage.src = src; // Set the source of the image
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.style.display = "none"; // Hide the modal
+    }
+    function toggleMenu() {
+    var nav = document.getElementById('left-nav');
+    if (nav.classList.contains('active')) {
+        nav.classList.remove('active');
+    } else {
+        nav.classList.add('active');
+    }
+}
+
+</script>
+</body>
+</html>  
+

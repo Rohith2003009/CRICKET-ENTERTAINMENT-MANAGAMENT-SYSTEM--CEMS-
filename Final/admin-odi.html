@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Teams</title>
+<style>
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+    }
+    .navbar {
+        display: flex;
+        flex-wrap: nowrap; /* Ensure items stay on the same line */
+        justify-content: space-around;
+        align-items: center;
+        background-color: #9fea08;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+    .navbar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .navbar-item img {
+        width: 50px;
+        height: 30px;
+        cursor: pointer;
+    }
+    .navbar-item p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .team-section {
+        display: none;
+        padding: 20px;
+    }
+    .team-section.active {
+        display: block;
+    }
+    .player-cards {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 80px;
+    }
+    .player-card {
+        width: 200px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        padding: 15px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .player-card:hover {
+        transform: scale(1.05);
+        background-color: #e0f7fa;
+    }
+    .player-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    .player-info {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    .team-section {
+    display: none; /* Hidden by default */
+}
+
+/* Team-Specific Hover Effects */
+#team1 .player-card:hover {
+    background-color: #b2ebf2; /* Cyan for India */
+    transform: scale(1.05);
+}
+
+#team2 .player-card:hover {
+    background-color: hsl(2, 100%, 61%); /* Light Orange for Australia */
+    transform: scale(1.05);
+}
+
+#team3 .player-card:hover {
+    background-color: #e5ff00; /* Light Green for South Africa */
+    transform: scale(1.05);
+}
+
+#team4 .player-card:hover {
+    background-color: #fc6198; /* Light Pink for England */
+    transform: scale(1.05);
+}
+
+#team5 .player-card:hover {
+    background-color: green; /* Light Purple for New Zealand */
+    transform: scale(1.05);
+}
+
+#team6 .player-card:hover {
+    background-color: #b1e052; /* Light Yellow for Pakistan */
+    transform: scale(1.05);
+}
+
+#team7 .player-card:hover {
+    background-color: skyblue;/* Light Coral for Sri Lanka */
+    transform: scale(1.05);
+}
+
+#team8 .player-card:hover {
+    background-color:  grey ;
+    transform: scale(1.05);
+}
+
+#team9 .player-card:hover {
+    background-color: rgb(100, 138, 252); /* Light Brown for West Indies */
+    transform: scale(1.05);
+}
+
+#team10 .player-card:hover {
+    background-color: rgb(104, 248, 109); 
+    transform: scale(1.05);
+}
+
+/* Display Active Team Section */
+.team-section.active {
+    display: block;
+}
+</style>
+<script>
+    
+    function showTeamInfo(teamId) {
+        // Hide all team sections
+        const teamSections = document.querySelectorAll('.team-section');
+        teamSections.forEach(section => section.classList.remove('active'));
+
+        // Show the selected team section
+        document.getElementById(teamId).classList.add('active');
+    }
+</script>
+</head>
+<body>
+
+
+
+<div class="navbar">
+    <div class="navbar-item">
+        <img src="https://th.bing.com/th/id/R.bc86467775a27418961d9c769e2b0ce3?rik=Cw%2fNfEQRTKbMfA&riu=http%3a%2f%2fwww.hdwallpaperslife.com%2fwp-content%2fuploads%2f2018%2f05%2fnational_flag_of_india_4k_5k.jpg&ehk=LHN0JbKLhTS%2fJDZoeubF97Yvek9Gi9hKTGqu1It%2fE6o%3d&risl=&pid=ImgRaw&r=0" alt="India" onclick="showTeamInfo('team1')">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">India</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-TCYvCxerVJ-fzVHL3dC0UcPDdVkIi2wHGg&s" alt="England" onclick="showTeamInfo('team2')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">England</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://images.emojiterra.com/twitter/512px/1f1e6-1f1fa.png" alt="Australia" onclick="showTeamInfo('team3')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Australia</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://static.vecteezy.com/system/resources/previews/024/286/508/non_2x/illustration-of-west-indies-flag-design-vector.jpg" alt="West Indies" onclick="showTeamInfo('team4')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">West Indies</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://th.bing.com/th/id/R.03dfe7eff6bd22b375b17032c855f636?rik=85aJhcj4y9irWA&riu=http%3a%2f%2fwww.gcpr.net%2fwp-content%2fuploads%2f2014%2f04%2fPakistan-Flag.png&ehk=rQSzRXjfaWIfLOyL4lErAKgBRZ%2f2f27oa08adFeZG00%3d&risl=&pid=ImgRaw&r=0" alt="Pakistan" onclick="showTeamInfo('team5')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Pakistan</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://th.bing.com/th/id/R.2b85df47260d9e5c2c47dfaa744fa5ad?rik=EajTbUppeU1tRw&riu=http%3a%2f%2fexploringafrica.matrix.msu.edu%2fwp-content%2fuploads%2f2016%2f04%2fSouth-Africa-Flag.png&ehk=ogS13e30Y0oEfBWqlc2yLpenGzWHUJfRgrz05Z0AZq8%3d&risl=&pid=ImgRaw&r=0" alt="South Africa" onclick="showTeamInfo('team6')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">South Africa</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://th.bing.com/th/id/OIP.sdj0_bMP_BwiWGWpgWJ6kgHaEo?rs=1&pid=ImgDetMain" alt="Afghanistan" onclick="showTeamInfo('team7')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Afghanistan</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://th.bing.com/th/id/OIP.Zp7eO413lEt5XRKgtW2LvgAAAA?rs=1&pid=ImgDetMain" alt="New Zealand" onclick="showTeamInfo('team8')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">New Zealand</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://img.etimg.com/thumb/msid-42182570,width-672,resizemode-4,imgsize-25362/news/international/world-news/implement-1987-indo-sri-lanka-accord-demands-sri-lankas-tamil-national-alliance/implement-1987-indo-sri-lanka-accord-demands-sri-lankastamil-national-alliance.jpg" alt="Sri Lanka" onclick="showTeamInfo('team9')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Sri Lanka</p>
+    </div>
+    <div class="navbar-item" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <img src="https://th.bing.com/th/id/OIP.bpn17ZoFze_aUDNkzXTrHAHaEc?rs=1&pid=ImgDetMain" alt="Bangladesh" onclick="showTeamInfo('team10')" style="width: 50px; height: 30px;">
+        <p style="margin-top: 5px; text-align: center; font-size: 14px; color: #333;">Bangladesh</p>
+    </div>
+</div>
+<br>
+<br><br><br>
+<div class="player-cards-container team-section" id="team1">
+    <div class="team-header">
+        <h2>Team India - ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/164_compress.png" alt="Virat Kohli">
+            <div class="player-info">
+                <h3>Virat Kohli</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 275<br>Runs: 13000<br>Average: 57.50</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/107_compress.png" alt="Rohit Sharma">
+            <div class="player-info">
+                <h3>Rohit Sharma</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 250<br>Runs: 12000<br>Average: 48.50</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/3761_compress.png" alt="Shubman Gill">
+            <div class="player-info">
+                <h3>Shubman Gill</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 50<br>Runs: 2400<br>Average: 56.00</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/1125_compress.png" alt="KL Rahul">
+            <div class="player-info">
+                <h3>KL Rahul</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 120<br>Runs: 4700<br>Average: 45.50</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/1212_compress.png" alt="Suryakumar Yadav">
+            <div class="player-info">
+                <h3>Suryakumar Yadav</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 40<br>Runs: 1300<br>Average: 37.14</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://assets.adidas.com/images/w_940,f_auto,q_auto/8b8f2e3c673546cfbcaf7769ee51170c_9366/IW9427_21_model.jpg" alt="Hardik Pandya">
+            <div class="player-info">
+                <h3>Hardik Pandya</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 90<br>Runs: 1900<br>Wickets: 75</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/9_compress.png" alt="Ravindra Jadeja">
+            <div class="player-info">
+                <h3>Ravindra Jadeja</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 180<br>Runs: 2500<br>Wickets: 200</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/1124_compress.png" alt="Jasprit Bumrah">
+            <div class="player-info">
+                <h3>Jasprit Bumrah</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 90<br>Wickets: 160<br>Economy: 4.49</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/94_compress.png" alt="Mohammed Shami">
+            <div class="player-info">
+                <h3>Mohammed Shami</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 120<br>Wickets: 220<br>Economy: 5.10</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/1113_compress.png" alt="Axar Patel">
+            <div class="player-info">
+                <h3>Axar Patel</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 50<br>Runs: 900<br>Wickets: 70</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://documents.bcci.tv/resizedimageskirti/3840_compress.png" alt="Mohammed Siraj">
+            <div class="player-info">
+                <h3>Mohammed Siraj</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 50<br>Wickets: 85<br>Economy: 4.70</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://assets.gqindia.com/photos/65264fe8bf069a271397f717/master/w_1600%2Cc_limit/Ishan-Kishan.jpg" alt="Ishan Kishan">
+            <div class="player-info">
+                <h3>Ishan Kishan</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 30<br>Runs: 1200<br>Average: 43.50</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="player-cards-container team-section" id="team2">
+    <div class="team-header">
+        <h2>Team England - ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383143.1.png" alt="Jos Buttler">
+            <div class="player-info">
+                <h3>Jos Buttler</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 165<br>Runs: 4500<br>Average: 41.20</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://www.cricbuzz.com/a/img/v1/152x152/i1/c170976/jonny-bairstow.jpg" alt="Jonny Bairstow">
+            <div class="player-info">
+                <h3>Jonny Bairstow</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 120<br>Runs: 5000<br>Average: 45.80</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://th.bing.com/th/id/OIP.umdp5zpXCih4LubrxTqy3AHaFj?rs=1&pid=ImgDetMain" alt="Ben Stokes">
+            <div class="player-info">
+                <h3>Ben Stokes</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 115<br>Runs: 3500<br>Wickets: 85</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/319700/319791.1.png" alt="Jason Roy">
+            <div class="player-info">
+                <h3>Jason Roy</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 110<br>Runs: 4300<br>Average: 40.90</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322900/322904.1.png" alt="David Willey">
+            <div class="player-info">
+                <h3>David Willey</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 90<br>Runs: 800<br>Wickets: 120</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383152.1.png" alt="Liam Livingstone">
+            <div class="player-info">
+                <h3>Liam Livingstone</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 45<br>Runs: 1200<br>Wickets: 30</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://static.cricbuzz.com/a/img/v1/152x152/i1/c170970/jofra-archer.jpg" alt="Jofra Archer">
+            <div class="player-info">
+                <h3>Jofra Archer</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 50<br>Wickets: 90<br>Economy: 4.60</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://www.bing.com/th?id=OIP.LAD0hbkv0FBurLphdVkj4QHaFL&w=202&h=200&c=8&rs=1&qlt=90&o=6&dpr=1.6&pid=3.1&rm=2" alt="Mark Wood">
+            <div class="player-info">
+                <h3>Mark Wood</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 65<br>Wickets: 100<br>Economy: 5.20</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383142.1.png" alt="Moeen Ali">
+            <div class="player-info">
+                <h3>Moeen Ali</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 130<br>Runs: 2200<br>Wickets: 120</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383150.1.png" alt="Reece Topley">
+            <div class="player-info">
+                <h3>Reece Topley</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 40<br>Wickets: 60<br>Economy: 5.00</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383153.1.png" alt="Sam Curran">
+            <div class="player-info">
+                <h3>Sam Curran</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 60<br>Runs: 950<br>Wickets: 70</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://th.bing.com/th/id/OIP.GuwcWhuzE9AUq6x4AK2zygAAAA?rs=1&pid=ImgDetMain" alt="Adil Rashid">
+            <div class="player-info">
+                <h3>Adil Rashid</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 150<br>Wickets: 250<br>Economy: 4.90</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="player-cards-container team-section" id="team3">
+    <div class="team-header">
+        <h2>Team Australia - ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316500/316589.1.png" alt="David Warner">
+            <div class="player-info">
+                <h3>David Warner</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 150<br>Runs: 6500<br>Average: 45.00</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/385700/385794.1.png" alt="Steve Smith">
+            <div class="player-info">
+                <h3>Steve Smith</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 140<br>Runs: 5200<br>Average: 43.80</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321500/321585.2.png" alt="Marnus Labuschagne">
+            <div class="player-info">
+                <h3>Marnus Labuschagne</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 50<br>Runs: 1800<br>Average: 38.50</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/389500/389563.5.png" alt="Glenn Maxwell">
+            <div class="player-info">
+                <h3>Glenn Maxwell</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 125<br>Runs: 4000<br>Wickets: 60</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/385700/385798.1.png" alt="Mitchell Marsh">
+            <div class="player-info">
+                <h3>Mitchell Marsh</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 90<br>Runs: 2500<br>Wickets: 70</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321500/321596.2.png" alt="Marcus Stoinis">
+            <div class="player-info">
+                <h3>Marcus Stoinis</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 80<br>Runs: 2000<br>Wickets: 50</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/390900/390954.5.png" alt="Pat Cummins">
+            <div class="player-info">
+                <h3>Pat Cummins</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 110<br>Wickets: 180<br>Economy: 4.50</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/390900/390978.5.png" alt="Mitchell Starc">
+            <div class="player-info">
+                <h3>Mitchell Starc</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 120<br>Wickets: 210<br>Economy: 5.00</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/390900/390976.5.png" alt="Josh Hazlewood">
+            <div class="player-info">
+                <h3>Josh Hazlewood</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 100<br>Wickets: 160<br>Economy: 4.40</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321500/321551.1.png" alt="Alex Carey">
+            <div class="player-info">
+                <h3>Alex Carey</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 90<br>Runs: 3000<br>Average: 37.50</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321500/321549.1.png" alt="Adam Zampa">
+            <div class="player-info">
+                <h3>Adam Zampa</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 95<br>Wickets: 150<br>Economy: 5.10</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321600/321601.2.png" alt="Sean Abbott">
+            <div class="player-info">
+                <h3>Sean Abbott</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 35<br>Wickets: 50<br>Economy: 5.40</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="player-cards-container team-section" id="team4">
+    <div class="team-header">
+        <h2>Team West-indians- ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320100/320122.1.png" alt="Shai Hope">
+            <div class="player-info">
+                <h3>Shai Hope</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 110<br>Runs: 4500<br>Average: 50.00</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320100/320109.2.png" alt="Nicholas Pooran">
+            <div class="player-info">
+                <h3>Nicholas Pooran</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 90<br>Runs: 3200<br>Average: 42.50</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320100/320116.1.png" alt="Shimron Hetmyer">
+            <div class="player-info">
+                <h3>Shimron Hetmyer</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 75<br>Runs: 2700<br>Average: 38.00</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322100/322172.1.png" alt="Rovman Powell">
+            <div class="player-info">
+                <h3>Rovman Powell</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 65<br>Runs: 1500<br>Wickets: 30</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316673.1.png" alt="Jason Holder">
+            <div class="player-info">
+                <h3>Jason Holder</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 140<br>Runs: 2000<br>Wickets: 150</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322000/322024.1.png" alt="Kyle Mayers">
+            <div class="player-info">
+                <h3>Kyle Mayers</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 50<br>Runs: 1200<br>Wickets: 20</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321900/321943.1.png" alt="Alzarri Joseph">
+            <div class="player-info">
+                <h3>Alzarri Joseph</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 80<br>Wickets: 120<br>Economy: 5.10</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321900/321939.1.png" alt="Akeal Hosein">
+            <div class="player-info">
+                <h3>Akeal Hosein</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 60<br>Wickets: 75<br>Economy: 4.70</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322000/322031.1.png" alt="Obed McCoy">
+            <div class="player-info">
+                <h3>Obed McCoy</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 40<br>Wickets: 50<br>Economy: 5.50</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/355400/355400.1.png" alt="Keemo Paul">
+            <div class="player-info">
+                <h3>Keemo Paul</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 35<br>Runs: 500<br>Wickets: 45</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316615.1.png" alt="Andre Russell">
+            <div class="player-info">
+                <h3>Andre Russell</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 70<br>Runs: 1900<br>Wickets: 65</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/321900/321999.1.png" alt="Fabian Allen">
+            <div class="player-info">
+                <h3>Fabian Allen</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 40<br>Runs: 600<br>Wickets: 30</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="player-cards-container team-section" id="team5">
+    <div class="team-header">
+        <h2>Team Pakistan- ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320400/320448.1.png" alt="Babar Azam">
+            <div class="player-info">
+                <h3>Babar Azam</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 120<br>Runs: 6000<br>Average: 58.50</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322200/322209.1.png" alt="Imam-ul-Haq">
+            <div class="player-info">
+                <h3>Imam-ul-Haq</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 85<br>Runs: 4000<br>Average: 53.00</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320400/320458.1.png" alt="Mohammad Rizwan">
+            <div class="player-info">
+                <h3>Mohammad Rizwan</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 90<br>Runs: 3500<br>Average: 42.50</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/382000/382031.6.png" alt="Fakhar Zaman">
+            <div class="player-info">
+                <h3>Fakhar Zaman</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 80<br>Runs: 3700<br>Average: 46.25</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320400/320467.1.png" alt="Shadab Khan">
+            <div class="player-info">
+                <h3>Shadab Khan</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 95<br>Runs: 1800<br>Wickets: 120</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322200/322250.1.png" alt="Shaheen Afridi">
+            <div class="player-info">
+                <h3>Shaheen Afridi</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 80<br>Wickets: 160<br>Economy: 5.20</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322200/322202.1.png" alt="Haris Rauf">
+            <div class="player-info">
+                <h3>Haris Rauf</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 60<br>Wickets: 100<br>Economy: 5.50</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320400/320451.1.png" alt="Imad Wasim">
+            <div class="player-info">
+                <h3>Imad Wasim</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 70<br>Runs: 1200<br>Wickets: 85</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322100/322154.1.png" alt="Mohammad Wasim Jr.">
+            <div class="player-info">
+                <h3>Mohammad Wasim Jr.</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 40<br>Wickets: 50<br>Economy: 5.60</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/386400/386402.6.png" alt="Usman Qadir">
+            <div class="player-info">
+                <h3>Usman Qadir</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 25<br>Wickets: 35<br>Economy: 5.00</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320400/320450.1.png" alt="Hasan Ali">
+            <div class="player-info">
+                <h3>Hasan Ali</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 85<br>Wickets: 140<br>Economy: 5.40</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/376900/376943.6.png" alt="Abrar Ahmed">
+            <div class="player-info">
+                <h3>Abrar Ahmed</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 20<br>Wickets: 25<br>Economy: 4.90</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="player-cards-container team-section" id="team6">
+    <div class="team-header">
+        <h2>Team South-Africa - ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316668.1.png" alt="Quinton de Kock">
+            <div class="player-info">
+                <h3>Quinton de Kock</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 150<br>Runs: 7400<br>Average: 45.00</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322000/322071.1.png" alt="Reeza Hendricks">
+            <div class="player-info">
+                <h3>Reeza Hendricks</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 80<br>Runs: 2800<br>Average: 38.00</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322000/322067.1.png" alt="Aiden Markram">
+            <div class="player-info">
+                <h3>Aiden Markram</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 100<br>Runs: 3500<br>Average: 42.50</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320300/320389.1.png" alt="Temba Bavuma">
+            <div class="player-info">
+                <h3>Temba Bavuma</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 85<br>Runs: 3200<br>Average: 44.70</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322000/322073.1.png" alt="Heinrich Klaasen">
+            <div class="player-info">
+                <h3>Heinrich Klaasen</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 70<br>Runs: 2500<br>Average: 46.00</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316655.1.png" alt="David Miller">
+            <div class="player-info">
+                <h3>David Miller</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 180<br>Runs: 6200<br>Average: 44.50</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320300/320334.1.png" alt="Andile Phehlukwayo">
+            <div class="player-info">
+                <h3>Andile Phehlukwayo</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 100<br>Runs: 1500<br>Wickets: 120</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320300/320376.1.png" alt="Kagiso Rabada">
+            <div class="player-info">
+                <h3>Kagiso Rabada</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 90<br>Wickets: 180<br>Economy: 4.80</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322000/322069.1.png" alt="Lungi Ngidi">
+            <div class="player-info">
+                <h3>Lungi Ngidi</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 70<br>Wickets: 120<br>Economy: 5.10</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322000/322080.1.png" alt="Anrich Nortje">
+            <div class="player-info">
+                <h3>Anrich Nortje</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 60<br>Wickets: 100<br>Economy: 5.00</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/337100/337189.1.png" alt="Marco Jansen">
+            <div class="player-info">
+                <h3>Marco Jansen</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 40<br>Runs: 700<br>Wickets: 45</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322000/322068.1.png" alt="Tabraiz Shamsi">
+            <div class="player-info">
+                <h3>Tabraiz Shamsi</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 50<br>Wickets: 75<br>Economy: 4.90</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="player-cards-container team-section" id="team7">
+    <div class="team-header">
+        <h2>Team Afghanistan - ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383200/383228.1.png" alt="Rashid Khan">
+            <div class="player-info">
+                <h3>Rashid Khan</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 100<br>Runs: 1200<br>Wickets: 180</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383200/383240.1.png" alt="Mujeeb Ur Rahman">
+            <div class="player-info">
+                <h3>Mujeeb Ur Rahman</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 90<br>Wickets: 120<br>Economy: 4.10</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/381900/381920.2.png" alt="Mohammad Nabi">
+            <div class="player-info">
+                <h3>Mohammad Nabi</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 140<br>Runs: 3000<br>Wickets: 150</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383200/383237.1.png" alt="Rahmanullah Gurbaz">
+            <div class="player-info">
+                <h3>Rahmanullah Gurbaz</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 60<br>Runs: 2000<br>Average: 36.50</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383200/383225.1.png" alt="Ibrahim Zadran">
+            <div class="player-info">
+                <h3>Ibrahim Zadran</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 50<br>Runs: 1800<br>Average: 40.00</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383200/383229.1.png" alt="Azmatullah Omarzai">
+            <div class="player-info">
+                <h3>Azmatullah Omarzai</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 45<br>Runs: 1000<br>Wickets: 40</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383200/383236.1.png" alt="Fazalhaq Farooqi">
+            <div class="player-info">
+                <h3>Fazalhaq Farooqi</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 35<br>Wickets: 50<br>Economy: 4.80</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320400/320495.1.png" alt="Hashmatullah Shahidi">
+            <div class="player-info">
+                <h3>Hashmatullah Shahidi</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 80<br>Runs: 3000<br>Average: 44.00</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/381900/381935.2.png" alt="Najibullah Zadran">
+            <div class="player-info">
+                <h3>Najibullah Zadran</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 75<br>Runs: 2500<br>Average: 37.00</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/320400/320498.1.png" alt="Ikram Alikhil">
+            <div class="player-info">
+                <h3>Ikram Alikhil</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 30<br>Runs: 800<br>Average: 32.00</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/390000/390026.5.png" alt="Qais Ahmad">
+            <div class="player-info">
+                <h3>Qais Ahmad</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 25<br>Wickets: 30<br>Economy: 4.70</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383200/383239.1.png" alt="Noor Ahmad">
+            <div class="player-info">
+                <h3>Noor Ahmad</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 20<br>Wickets: 25<br>Economy: 4.50</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="player-cards-container team-section" id="team8">
+    <div class="team-header">
+        <h2>Team NewZeland - ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383172.1.png" alt="Kane Williamson">
+            <div class="player-info">
+                <h3>Kane Williamson</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 165<br>Runs: 7200<br>Average: 47.50</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316672.1.png" alt="Tom Latham">
+            <div class="player-info">
+                <h3>Tom Latham</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 140<br>Runs: 5200<br>Average: 40.00</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383148.1.png" alt="Devon Conway">
+            <div class="player-info">
+                <h3>Devon Conway</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 50<br>Runs: 2100<br>Average: 46.00</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383164.1.png" alt="Finn Allen">
+            <div class="player-info">
+                <h3>Finn Allen</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 35<br>Runs: 1200<br>Average: 37.50</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383147.2.png" alt="Daryl Mitchell">
+            <div class="player-info">
+                <h3>Daryl Mitchell</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 60<br>Runs: 1800<br>Wickets: 30</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383167.1.png" alt="Glenn Phillips">
+            <div class="player-info">
+                <h3>Glenn Phillips</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 40<br>Runs: 1400<br>Wickets: 20</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383179.1.png" alt="Michael Bracewell">
+            <div class="player-info">
+                <h3>Michael Bracewell</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 45<br>Runs: 1000<br>Wickets: 35</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383180.1.png" alt="Mitchell Santner">
+            <div class="player-info">
+                <h3>Mitchell Santner</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 150<br>Runs: 2100<br>Wickets: 150</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383174.1.png" alt="Lockie Ferguson">
+            <div class="player-info">
+                <h3>Lockie Ferguson</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 70<br>Wickets: 125<br>Economy: 5.20</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383184.1.png" alt="Tim Southee">
+            <div class="player-info">
+                <h3>Tim Southee</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 200<br>Wickets: 300<br>Economy: 5.00</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383178.1.png" alt="Matt Henry">
+            <div class="player-info">
+                <h3>Matt Henry</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 125<br>Wickets: 210<br>Economy: 4.80</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/383100/383185.1.png" alt="Trent Boult">
+            <div class="player-info">
+                <h3>Trent Boult</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 120<br>Wickets: 230<br>Economy: 4.50</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="player-cards-container team-section" id="team9">
+    <div class="team-header">
+        <h2>Team SriLanka - ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/358900/358954.2.png" alt="Dimuth Karunaratne">
+            <div class="player-info">
+                <h3>Dimuth Karunaratne</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 105<br>Runs: 4100<br>Average: 39.00</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/319800/319866.2.png" alt="Kusal Mendis">
+            <div class="player-info">
+                <h3>Kusal Mendis</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 120<br>Runs: 4500<br>Average: 38.50</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/323000/323070.1.png" alt="Pathum Nissanka">
+            <div class="player-info">
+                <h3>Pathum Nissanka</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 70<br>Runs: 2500<br>Average: 42.00</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/348500/348599.1.png" alt="Charith Asalanka">
+            <div class="player-info">
+                <h3>Charith Asalanka</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 65<br>Runs: 2200<br>Wickets: 20</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/319800/319859.2.png" alt="Dhananjaya de Silva">
+            <div class="player-info">
+                <h3>Dhananjaya de Silva</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 125<br>Runs: 3500<br>Wickets: 70</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/328000/328058.2.png" alt="Dasun Shanaka">
+            <div class="player-info">
+                <h3>Dasun Shanaka</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 100<br>Runs: 3000<br>Wickets: 50</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322900/322946.1.png" alt="Wanindu Hasaranga">
+            <div class="player-info">
+                <h3>Wanindu Hasaranga</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 85<br>Runs: 1500<br>Wickets: 120</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/347800/347825.1.png" alt="Maheesh Theekshana">
+            <div class="player-info">
+                <h3>Maheesh Theekshana</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 60<br>Wickets: 90<br>Economy: 4.50</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322900/322957.1.png" alt="Kasun Rajitha">
+            <div class="player-info">
+                <h3>Kasun Rajitha</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 50<br>Wickets: 75<br>Economy: 5.10</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/348600/348600.1.png" alt="Dilshan Madushanka">
+            <div class="player-info">
+                <h3>Dilshan Madushanka</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 35<br>Wickets: 50<br>Economy: 4.80</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/355400/355401.1.png" alt="Pramod Madushan">
+            <div class="player-info">
+                <h3>Pramod Madushan</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 30<br>Wickets: 40<br>Economy: 5.00</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322900/322942.1.png" alt="Lahiru Kumara">
+            <div class="player-info">
+                <h3>Lahiru Kumara</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 40<br>Wickets: 60<br>Economy: 5.20</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="player-cards-container team-section" id="team10">
+    <div class="team-header">
+        <h2>Team Bangladesh - ODI Players (2024)</h2>
+        <a href="admin-teams.html" class="back-link">Return-Back</a> <!-- Back link -->
+    </div>
+    <div class="player-cards">
+        <!-- Player 1 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/385800/385821.1.png" alt="Soumya Sarkar">
+            <div class="player-info">
+                <h3>Soumya Sarkar</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 80<br>Runs: 2800<br>Average: 38.50</p>
+            </div>
+        </div>
+        <!-- Player 2 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/385700/385792.1.png" alt="Tamim Iqbal">
+            <div class="player-info">
+                <h3>Tamim Iqbal</h3>
+                <p>Role: Batsman</p>
+                <p>Matches: 205<br>Runs: 8000<br>Average: 40.00</p>
+            </div>
+        </div>
+        <!-- Player 3 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316500/316581.1.png" alt="Shakib Al Hasan">
+            <div class="player-info">
+                <h3>Shakib Al Hasan</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 220<br>Runs: 6500<br>Wickets: 300</p>
+            </div>
+        </div>
+        <!-- Player 4 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/385700/385790.1.png" alt="Mushfiqur Rahim">
+            <div class="player-info">
+                <h3>Mushfiqur Rahim</h3>
+                <p>Role: Wicketkeeper-Batsman</p>
+                <p>Matches: 200<br>Runs: 6000<br>Average: 38.00</p>
+            </div>
+        </div>
+        <!-- Player 5 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/382800/382810.1.png" alt="Mahmudullah Riyad">
+            <div class="player-info">
+                <h3>Mahmudullah Riyad</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 170<br>Runs: 4500<br>Wickets: 50</p>
+            </div>
+        </div>
+        <!-- Player 6 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316633.1.png" alt="Nasir Hossain">
+            <div class="player-info">
+                <h3>Nasir Hossain</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 100<br>Runs: 2500<br>Wickets: 70</p>
+            </div>
+        </div>
+        <!-- Player 7 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/322800/322800.1.png" alt="Mohammad Saifuddin">
+            <div class="player-info">
+                <h3>Mohammad Saifuddin</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 50<br>Runs: 1500<br>Wickets: 60</p>
+            </div>
+        </div>
+        <!-- Player 8 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/323100/323159.1.png" alt="Afif Hossain">
+            <div class="player-info">
+                <h3>Afif Hossain</h3>
+                <p>Role: All-rounder</p>
+                <p>Matches: 40<br>Runs: 1200<br>Wickets: 25</p>
+            </div>
+        </div>
+        <!-- Player 9 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/323100/323172.1.png" alt="Hasan Mahmud">
+            <div class="player-info">
+                <h3>Hasan Mahmud</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 45<br>Wickets: 60<br>Economy: 4.80</p>
+            </div>
+        </div>
+        <!-- Player 10 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/319700/319738.1.png" alt="Shafiul Islam">
+            <div class="player-info">
+                <h3>Shafiul Islam</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 70<br>Wickets: 85<br>Economy: 5.10</p>
+            </div>
+        </div>
+        <!-- Player 11 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316634.1.png" alt="Rubel Hossain">
+            <div class="player-info">
+                <h3>Rubel Hossain</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 90<br>Wickets: 110<br>Economy: 5.30</p>
+            </div>
+        </div>
+        <!-- Player 12 -->
+        <div class="player-card">
+            <img class="player-photo" src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/316600/316675.1.png" alt="Taijul Islam">
+            <div class="player-info">
+                <h3>Taijul Islam</h3>
+                <p>Role: Bowler</p>
+                <p>Matches: 45<br>Wickets: 80<br>Economy: 4.60</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
